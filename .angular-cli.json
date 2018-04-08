@@ -19,9 +19,23 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.scss"
+        "styles.scss",
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "../node_modules/angular-calendar/css/angular-calendar.css",
+        "../node_modules/chartist/dist/chartist.css",
+        "../node_modules/ng2-toastr/bundles/ng2-toastr.min.css",
+        "../node_modules/quill/dist/quill.snow.css",
+        "../node_modules/dragula/dist/dragula.css",
+        "../src/assets/scss/style.scss",
+        "../src/assets/scss/colors/blue.scss"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/popper.js/dist/umd/popper.min.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.min.js",
+        "../node_modules/jquery-slimscroll/jquery.slimscroll.min.js",
+        "../node_modules/pace-js/pace.min.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
