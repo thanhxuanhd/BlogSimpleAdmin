@@ -1,7 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { IAuthenServiceToken, IAuthenService, UrlConfig, NotificationService } from '../core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,9 +22,18 @@ export class LoginComponent implements OnInit {
   constructor(
     @Inject(IAuthenServiceToken) private authenService: IAuthenService,
     private router: Router,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private titleService: Title,
+    private activatedRoute: ActivatedRoute,
   ) {
-
+    this
+      .router.events
+      .filter(event => event instanceof NavigationEnd)
+      .map(() => this.activatedRoute)
+      .mergeMap(route => route.data)
+      .subscribe((event) => {
+        this.titleService.setTitle(event['title']);
+      });
   }
 
   ngOnInit() {

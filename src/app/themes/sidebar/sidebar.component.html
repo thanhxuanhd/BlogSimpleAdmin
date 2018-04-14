@@ -32,20 +32,28 @@
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
                 <li class="nav-devider"></li>
-                <li [class.active]="showMenu === 'starter'">
-                    <a routerLink="/starter" (click)="addExpandClass('starter')">
+                <li [class.active]="showMenu === 'home'">
+                    <a routerLink="/main/home" (click)="addExpandClass('home')" [routerLinkActive]="['router-link-active']">
                         <i class="mdi mdi-file"></i>
-                        <span class="hide-menu">Starter Page</span>
+                        <span class="hide-menu">Home</span>
                     </a>
                 </li>
-                <li class="nav-small-cap">UI Components</li>
-                <li [class.active]="showMenu === 'component'">
-                    <a class="has-arrow" href="javascript:void(0)" (click)="addExpandClass('component')" aria-expanded="false">
+                <li class="nav-small-cap">Acction</li>
+                <li [class.active]="showMenu === 'main'">
+                    <a class="has-arrow" href="javascript:void(0)" (click)="addExpandClass('main')" aria-expanded="false">
                         <i class="mdi mdi-bullseye"></i>
-                        <span class="hide-menu">Components</span>
+                        <span class="hide-menu">Main</span>
                     </a>
-                    <!-- <ul aria-expanded="false" class="collapse" [class.in]="showMenu === 'component'">
-                        <li><a routerLink="/component/accordion" [routerLinkActive]="['router-link-active']">Accordion</a></li>
+                    <ul aria-expanded="false" class="collapse" [class.in]="showMenu === 'main'">
+                        <li>
+                            <a routerLink="/main/postcategory" [routerLinkActive]="['router-link-active']">
+                                <i class="mdi mdi-newspaper"></i> Post Category</a>
+                        </li>
+                        <li>
+                            <a routerLink="/main/post" [routerLinkActive]="['router-link-active']">
+                                <i class="mdi mdi-bulletin-board"></i> Post</a>
+                        </li>
+                        <!-- <li><a routerLink="/component/accordion" [routerLinkActive]="['router-link-active']">Accordion</a></li>
                         <li><a routerLink="/component/alert" [routerLinkActive]="['router-link-active']">Alert</a></li>
                         <li><a routerLink="/component/carousel" [routerLinkActive]="['router-link-active']">Carousel</a></li>
                         <li><a routerLink="/component/dropdown" [routerLinkActive]="['router-link-active']">Dropdown - Collapse</a></li>
@@ -57,8 +65,8 @@
                         <li><a routerLink="/component/tabs" [routerLinkActive]="['router-link-active']">Tabs</a></li>
                         <li><a routerLink="/component/timepicker" [routerLinkActive]="['router-link-active']">Timepicker</a></li>
                         <li><a routerLink="/component/buttons" [routerLinkActive]="['router-link-active']">Button</a></li>
-                        <li><a routerLink="/component/cards" [routerLinkActive]="['router-link-active']">Card</a></li>
-                    </ul> -->
+                        <li><a routerLink="/component/cards" [routerLinkActive]="['router-link-active']">Card</a></li> -->
+                    </ul>
                 </li>
             </ul>
         </nav>

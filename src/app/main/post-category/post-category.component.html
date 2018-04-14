@@ -1,0 +1,64 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-title"></div>
+      <div class="card-body">
+        <div class="col m-b-10">
+          <div class="text-right">
+            <button class="btn btn-info">
+              <i class="fa fa-plus"></i> Add
+            </button>
+          </div>
+        </div>
+        <div class="col">
+          <ngx-datatable class="material" [rows]="postCategorys" [columnMode]="'force'" [headerHeight]="page.HeaderHeight" [rowHeight]="page.RowHeight"
+            [externalPaging]="true" [count]="page.TotalCount" [offset]="page.PageIndex" [limit]="page.PageSize" (page)='setPage($event)'
+            [footerHeight]="page.FooterHeight">
+            <ngx-datatable-column name="No" [width]="page.ColumnWith">
+              <ng-template let-column="column" ngx-datatable-header-template>
+                {{column.name}}
+              </ng-template>
+              <ng-template let-value="value" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+                <span>{{rowIndex +1}}</span>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Category Name">
+              <ng-template let-column="column" ngx-datatable-header-template>
+                {{column.name}}
+              </ng-template>
+              <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                <strong>{{row.CategoryName}}</strong>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Public">
+              <ng-template let-column="column" ngx-datatable-header-template>
+                {{column.name}}
+              </ng-template>
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                <span class="text-success" *ngIf="row.IsPublic">
+                  <i class="fa fa-check"></i>
+                </span>
+                <span class="text-danger" *ngIf="!row.IsPublic">
+                  <i class="fa fa-times"></i>
+                </span>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Action" [width]="page.ColumnWith">
+              <ng-template let-column="column" ngx-datatable-header-template>
+                {{column.name}}
+              </ng-template>
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                <button type="button" class="btn-xs btn-link">
+                  <i class="fa fa-pencil fa-2x"></i>
+                </button>
+                <button type="button" class="btn-xs btn-link text-danger">
+                  <i class="fa fa-trash fa-2x"></i>
+                </button>
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

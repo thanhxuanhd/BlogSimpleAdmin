@@ -1,3 +1,10 @@
 {
-    "BASE_API": "http://localhost:10688"
+    "BASE_API": "http://localhost:10688",
+    "PAGE_CONFIG": {
+        "HeaderHeight": 50,
+        "ColumnWith": 50,
+        "RowHeight": 50,
+        "FooterHeight": 50,
+        "PageSize": 15
+    }
 }

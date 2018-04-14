@@ -5,6 +5,7 @@ import { NavigationComponent } from '../themes/header-navigation/navigation.comp
 import { SidebarComponent } from '../themes/sidebar/sidebar.component';
 import { BreadcrumbComponent } from '../themes/breadcrumb/breadcrumb.component';
 import { RightSidebarComponent } from '../themes/right-sidebar/rightsidebar.component';
+import { RouterModule } from '@angular/router';
 const Components = [
   SIDEBAR_TOGGLE_DIRECTIVES,
   NavigationComponent,
@@ -15,7 +16,8 @@ const Components = [
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   declarations: [...Components],
   exports: [...Components]

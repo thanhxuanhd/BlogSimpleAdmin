@@ -6,8 +6,10 @@ const routes: Routes = [
     {
         path: '', component: MainComponent,
         children: [
-            { path: '', redirectTo: 'post', pathMatch: 'full' },
-            { path: 'post', loadChildren: './post/post.module#PostModule' }
+            { path: '', redirectTo: 'home', pathMatch: 'full' },
+            { path: 'home', loadChildren: './home/home.module#HomeModule' },
+            { path: 'post', loadChildren: './post/post.module#PostModule' },
+            { path: 'postcategory', loadChildren: './post-category/post-category.module#PostCategoryModule' }
         ]
     }
 ];

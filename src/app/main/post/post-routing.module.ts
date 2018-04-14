@@ -4,7 +4,12 @@ import { NgModule } from '@angular/core';
 import { PostComponent } from './post.component';
 
 const routes: Routes = [
-    { path: '', component: PostComponent },
+    {
+        path: '', component: PostComponent, data: {
+            title: 'Post Page',
+            urls: [{ title: 'Main', url: '/main' }, { title: 'Post' }]
+        }
+    }
 ];
 
 @NgModule({

@@ -6,7 +6,7 @@ import * as $ from 'jquery';
 import { environment } from '../environments/environment';
 import { ConfigService } from './core';
 import { HttpClientModule } from '@angular/common/http';
-
+import { SpinnerComponent } from './themes/spinner.component';
 export function ConfigLoader(configService: ConfigService) {
   // Note: this factory need to return a function (that return a promise)
   return () => configService.load(environment.configFile);
@@ -14,7 +14,8 @@ export function ConfigLoader(configService: ConfigService) {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SpinnerComponent
   ],
   imports: [
     HttpClientModule,
