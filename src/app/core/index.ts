@@ -15,6 +15,8 @@ export * from './services/authen.service';
 export * from './services/data.service';
 export * from './services/notification.service';
 export * from './services/post-category.service';
+export * from './services/translate.service';
+export * from './services/error.service';
 // Token
 export * from './tokens/authen.service.token';
 export * from './tokens/data.service.token';

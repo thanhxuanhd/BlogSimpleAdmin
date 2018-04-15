@@ -1,0 +1,35 @@
+{
+    "Login": {
+        "Title": "Đăng nhập Blog Simple",
+        "lblUserName": "Tài khoản",
+        "lblPassword": "Mật khẩu",
+        "btnLogin": "Đăng nhập",
+        "btnForgotPassword": "Quên mật khẩu?",
+        "Error": {
+            "UserName": {
+                "required": "Tên đăng nhập là bắt buộc."
+            },
+            "Password": {
+                "required": "Mật là bắt buộc."
+            }
+        }
+    },
+    "Main": {
+        "Post": {
+            "Title": "Quản lý bài đăng"
+        },
+        "PostCategory": {
+            "Title": "Quản lý danh mục"
+        }
+    },
+    "Common": {
+        "btnCreate": "Thêm mới",
+        "btnEdit": "Sửa",
+        "btnDelete": "Xóa",
+        "Language": {
+            "Title": "Ngôn ngữ",
+            "LblEnglish": "Tiếng Anh",
+            "LblVietNam": "Tiếng Việt"
+        }
+    }
+}

@@ -7,6 +7,7 @@ import { environment } from '../environments/environment';
 import { ConfigService } from './core';
 import { HttpClientModule } from '@angular/common/http';
 import { SpinnerComponent } from './themes/spinner.component';
+import { AppTranslationModule } from './app.translate.module';
 export function ConfigLoader(configService: ConfigService) {
   // Note: this factory need to return a function (that return a promise)
   return () => configService.load(environment.configFile);
@@ -20,7 +21,8 @@ export function ConfigLoader(configService: ConfigService) {
   imports: [
     HttpClientModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AppTranslationModule
   ],
   providers: [
     ConfigService,

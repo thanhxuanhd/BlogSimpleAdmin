@@ -1,7 +1,36 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ 'Common.Language.Title' | translate}}
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" (click)="setLanguage('en')">
+                  <img src="assets/images/flags/en.png" alt="English" />  {{ 'Common.Language.LblEnglish' | translate}}
+                </a>
+                <a class="dropdown-item" (click)="setLanguage('vn')">
+                  <img src="assets/images/flags/vn.png" alt="VietNam" /> {{ 'Common.Language.LblVietNam' | translate}}
+                </a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>
 <div class="wrapper fadeInDown">
   <div id="formContent">
     <!-- Tabs Titles -->
-    <h2 class="active"> Sign In </h2>
+    <h2 class="active"> {{'Login.Title'| translate}} </h2>
     <!-- Icon -->
     <div class="fadeIn first">
       <!-- <img src="assets/images/logo-icon.png" id="icon" alt="User Icon" /> -->
@@ -10,14 +39,16 @@
 
     <!-- Login Form -->
     <form [formGroup]="formLogin" novalidate (ngSubmit)="onFormLoginSubmit($event)">
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login" formControlName="UserName">
-      <input type="password" id="password" class="fadeIn third" name="login" placeholder="password" formControlName="Password">
-      <input type="submit" class="fadeIn fourth btn" value="Log In" [disabled]="!formLogin.valid">
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="{{'Login.lblUserName'| translate}}" formControlName="UserName">
+      <input type="password" id="password" class="fadeIn third" name="login" placeholder="{{'Login.lblPassword'| translate}}" formControlName="Password">
+      <button type="submit" class="fadeIn fourth btn" [disabled]="!formLogin.valid">
+        {{'Login.btnLogin'| translate}}
+      </button>
     </form>
 
     <!-- Remind Passowrd -->
     <div id="formFooter">
-      <a class="underlineHover">Forgot Password?</a>
+      <a class="underlineHover">{{'Login.btnForgotPassword'| translate}}</a>
     </div>
 
   </div>

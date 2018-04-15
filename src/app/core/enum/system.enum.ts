@@ -1,6 +1,7 @@
 export enum SystemConfig {
     CURRENT_USER = 'CURRENT_USER',
-    MENU = 'MENU'
+    MENU = 'MENU',
+    LANG = 'LANGUAGE'
 }
 export enum UrlConfig {
     MAIN = '/main',

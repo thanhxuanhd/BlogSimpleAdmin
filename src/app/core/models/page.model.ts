@@ -21,3 +21,7 @@ export class TableConfig {
     FooterHeight: number;
     PageSize: number;
 }
+export class LanguageConfiguration {
+    LanguageDefault: string;
+    LanguageSupports: Array<string>;
+}

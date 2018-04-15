@@ -6,5 +6,12 @@
         "RowHeight": 50,
         "FooterHeight": 50,
         "PageSize": 15
+    },
+    "LAGUAGE": {
+        "LanguageDefault": "en",
+        "LanguageSupports": [
+            "en",
+            "vn"
+        ]
     }
 }

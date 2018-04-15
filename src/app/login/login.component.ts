@@ -1,11 +1,12 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { IAuthenServiceToken, IAuthenService, UrlConfig, NotificationService } from '../core';
+import { IAuthenServiceToken, IAuthenService, UrlConfig, NotificationService, TranslatesService, SystemConfig } from '../core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
+import { Jsonp } from '@angular/http';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit {
     private notificationService: NotificationService,
     private titleService: Title,
     private activatedRoute: ActivatedRoute,
+    private translatesService: TranslatesService
   ) {
     this
       .router.events
@@ -50,5 +52,11 @@ export class LoginComponent implements OnInit {
         this.notificationService.printErrorMessage('Login Error');
       });
     }
+  }
+
+  setLanguage(lang) {
+    localStorage.setItem(SystemConfig.LANG, JSON.stringify(lang));
+    this.translatesService.use(lang);
+    this.translatesService.refreshText();
   }
 }

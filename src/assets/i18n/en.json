@@ -1,0 +1,35 @@
+{
+    "Login": {
+        "Title": "Login Blog Simple",
+        "lblUserName": "Username",
+        "lblPassword": "Password",
+        "btnLogin": "Login",
+        "btnForgotPassword": "Forgot Password?",
+        "Error": {
+            "UserName": {
+                "required": "User Name is required."
+            },
+            "Password": {
+                "required": "Password is required."
+            }
+        }
+    },
+    "Main": {
+        "Post": {
+            "Title": "Post Manager"
+        },
+        "PostCategory": {
+            "Title": "Post Category Manager"
+        }
+    },
+    "Common": {
+        "btnCreate": "Create",
+        "btnEdit": "Edit",
+        "btnDelete": "Delete",
+        "Language": {
+            "Title": "Languages",
+            "LblEnglish": "English",
+            "LblVietNam": "VietNamese"
+        }
+    }
+}
