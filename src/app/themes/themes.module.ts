@@ -6,6 +6,7 @@ import { SidebarComponent } from '../themes/sidebar/sidebar.component';
 import { BreadcrumbComponent } from '../themes/breadcrumb/breadcrumb.component';
 import { RightSidebarComponent } from '../themes/right-sidebar/rightsidebar.component';
 import { RouterModule } from '@angular/router';
+import { IAuthenServiceToken, AuthenService, NotificationService } from '../core';
 const Components = [
   SIDEBAR_TOGGLE_DIRECTIVES,
   NavigationComponent,
@@ -20,7 +21,13 @@ const Components = [
     RouterModule
   ],
   declarations: [...Components],
-  exports: [...Components]
+  exports: [...Components],
+  providers: [{
+    provide: IAuthenServiceToken,
+    useClass: AuthenService
+  },
+    NotificationService
+  ]
 })
 export class ThemesModule {
   public static forRoot(): ModuleWithProviders {

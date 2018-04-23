@@ -53,19 +53,6 @@
                             <a routerLink="/main/post" [routerLinkActive]="['router-link-active']">
                                 <i class="mdi mdi-bulletin-board"></i> Post</a>
                         </li>
-                        <!-- <li><a routerLink="/component/accordion" [routerLinkActive]="['router-link-active']">Accordion</a></li>
-                        <li><a routerLink="/component/alert" [routerLinkActive]="['router-link-active']">Alert</a></li>
-                        <li><a routerLink="/component/carousel" [routerLinkActive]="['router-link-active']">Carousel</a></li>
-                        <li><a routerLink="/component/dropdown" [routerLinkActive]="['router-link-active']">Dropdown - Collapse</a></li>
-                        <li><a routerLink="/component/modal" [routerLinkActive]="['router-link-active']">Modal</a></li>
-                        <li><a routerLink="/component/pagination" [routerLinkActive]="['router-link-active']">Pagination</a></li>
-                        <li><a routerLink="/component/poptool" [routerLinkActive]="['router-link-active']">Popover & Tooltip</a></li>
-                        <li><a routerLink="/component/progressbar" [routerLinkActive]="['router-link-active']">Progressbar</a></li>
-                        <li><a routerLink="/component/rating" [routerLinkActive]="['router-link-active']">Ratings</a></li>
-                        <li><a routerLink="/component/tabs" [routerLinkActive]="['router-link-active']">Tabs</a></li>
-                        <li><a routerLink="/component/timepicker" [routerLinkActive]="['router-link-active']">Timepicker</a></li>
-                        <li><a routerLink="/component/buttons" [routerLinkActive]="['router-link-active']">Button</a></li>
-                        <li><a routerLink="/component/cards" [routerLinkActive]="['router-link-active']">Card</a></li> -->
                     </ul>
                 </li>
             </ul>
@@ -84,7 +71,7 @@
             <i class="mdi mdi-gmail"></i>
         </a>
         <!-- item-->
-        <a href="" class="link" data-toggle="tooltip" title="Logout">
+        <a href="" class="link" data-toggle="tooltip" title="Logout" (click)="logoutPage($event)">
             <i class="mdi mdi-power"></i>
         </a>
     </div>

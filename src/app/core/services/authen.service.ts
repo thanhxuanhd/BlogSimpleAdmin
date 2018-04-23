@@ -28,8 +28,9 @@ export class AuthenService {
 
     Logout() {
         localStorage.removeItem(SystemConfig.CURRENT_USER);
+        const url = this.configService.getConfiguration().BASE_API + '/api/Account/Logout';
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-        return this.http.post('', null, { headers: headers }).map(response => { });
+        return this.http.post(url, null, { headers: headers });
     }
 
     IsUserAuthenticated(): boolean {

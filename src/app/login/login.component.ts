@@ -1,5 +1,14 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { IAuthenServiceToken, IAuthenService, UrlConfig, NotificationService, TranslatesService, SystemConfig } from '../core';
+import {
+  IAuthenServiceToken,
+  IAuthenService,
+  UrlConfig,
+  NotificationService,
+  TranslatesService,
+  SystemConfig,
+  Language,
+  ConfigService
+} from '../core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
@@ -19,14 +28,16 @@ export class LoginComponent implements OnInit {
     Password: new FormControl('', [Validators.required, Validators.minLength(3)])
   });
 
-
+  languages: Array<Language> = [];
+  currentLanguage: Language;
   constructor(
     @Inject(IAuthenServiceToken) private authenService: IAuthenService,
     private router: Router,
     private notificationService: NotificationService,
     private titleService: Title,
     private activatedRoute: ActivatedRoute,
-    private translatesService: TranslatesService
+    private translatesService: TranslatesService,
+    private configuration: ConfigService
   ) {
     this
       .router.events
@@ -36,6 +47,12 @@ export class LoginComponent implements OnInit {
       .subscribe((event) => {
         this.titleService.setTitle(event['title']);
       });
+
+    this.languages = this.configuration.getConfiguration().LAGUAGE.Languages;
+    const lang = translatesService.currentLanguage();
+    if (lang) {
+      this.currentLanguage = this.languages.find(f => f.Id === lang);
+    }
   }
 
   ngOnInit() {
@@ -57,6 +74,7 @@ export class LoginComponent implements OnInit {
   setLanguage(lang) {
     localStorage.setItem(SystemConfig.LANG, JSON.stringify(lang));
     this.translatesService.use(lang);
+    this.currentLanguage = this.languages.find(f => f.Id === lang);
     this.translatesService.refreshText();
   }
 }

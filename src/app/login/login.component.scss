@@ -288,3 +288,14 @@ input[type=password]:placeholder {
 * {
     box-sizing: border-box;
 }
+
+.right-nav {
+    justify-content: flex-end;
+    .dropdown-menu {
+        right: 0.1rem;
+        left: auto;
+    }
+    img {
+        width: 30px;
+    }
+}

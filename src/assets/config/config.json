@@ -12,6 +12,18 @@
         "LanguageSupports": [
             "en",
             "vn"
+        ],
+        "Languages": [
+            {
+                "Id": "en",
+                "TranslateKey": "Common.Language.LblEnglish",
+                "Image": "assets/images/flags/en.png"
+            },
+            {
+                "Id": "vn",
+                "TranslateKey": "Common.Language.LblVietNam",
+                "Image": "assets/images/flags/vn.png"
+            }
         ]
     }
 }

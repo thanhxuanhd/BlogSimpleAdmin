@@ -6,18 +6,20 @@
           aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="collapse navbar-collapse right-nav" id="navbarNavAltMarkup">
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{ 'Common.Language.Title' | translate}}
+                <span *ngIf="currentLanguage; else languageDefault">
+                  {{currentLanguage.TranslateKey | translate}}
+                </span>
+                <ng-template #languageDefault>
+                  {{ 'Common.Language.Title' | translate}}
+                </ng-template>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" (click)="setLanguage('en')">
-                  <img src="assets/images/flags/en.png" alt="English" />  {{ 'Common.Language.LblEnglish' | translate}}
-                </a>
-                <a class="dropdown-item" (click)="setLanguage('vn')">
-                  <img src="assets/images/flags/vn.png" alt="VietNam" /> {{ 'Common.Language.LblVietNam' | translate}}
+                <a *ngFor="let item of languages" class="dropdown-item" (click)="setLanguage(item.Id)">
+                  <img [src]="item.Image" alt="{{item.TranslateKey}}" /> {{item.TranslateKey | translate}}
                 </a>
               </div>
             </li>

@@ -43,4 +43,8 @@ export class TranslatesService {
         // refresh translation when language change
         this.translations.use(this.currentLang);
     }
+
+    currentLanguage() {
+        return this.currentLang;
+    }
 }

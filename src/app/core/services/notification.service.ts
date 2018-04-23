@@ -31,7 +31,7 @@ export class NotificationService {
         // auto-dismiss wait time (in seconds)
         delay: 3,
         // default position
-        position: 'top-right',
+        position: 'bottom-right',
         // adds a close button to notifier messages
         closeButton: false,
 

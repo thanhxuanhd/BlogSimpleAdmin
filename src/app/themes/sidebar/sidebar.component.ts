@@ -1,10 +1,18 @@
-import { Component, AfterViewInit, OnInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit, Inject } from '@angular/core';
+import { IAuthenServiceToken, IAuthenService, UrlConfig, NotificationService } from '../../core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-sidebar',
     templateUrl: './sidebar.component.html'
 })
 export class SidebarComponent implements AfterViewInit {
+    constructor(@Inject(IAuthenServiceToken) private authenService: IAuthenService,
+        private router: Router,
+        private notificationService: NotificationService) {
+
+    }
+
     // this is for the open close
     isActive = true;
     showMenu = '';
@@ -47,6 +55,16 @@ export class SidebarComponent implements AfterViewInit {
                 }
             });
 
+        });
+    }
+
+    logoutPage(event) {
+        this.authenService.Logout().subscribe((response) => {
+            this.router.navigate([UrlConfig.LOGIN]);
+            this.notificationService.printSuccessMessage('Success');
+        }, (error) => {
+            this.router.navigate([UrlConfig.LOGIN]);
+            this.notificationService.printErrorMessage('Fail');
         });
     }
 }

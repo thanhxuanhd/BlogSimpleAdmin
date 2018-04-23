@@ -24,4 +24,10 @@ export class TableConfig {
 export class LanguageConfiguration {
     LanguageDefault: string;
     LanguageSupports: Array<string>;
+    Languages: Array<Language>;
+}
+export class Language {
+    Id: string;
+    TranslateKey: string;
+    Image: string;
 }
