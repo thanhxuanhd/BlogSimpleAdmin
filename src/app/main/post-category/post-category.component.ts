@@ -16,6 +16,7 @@ export class PostCategoryComponent implements OnInit {
 
   postCategorys: Array<PostCategoryViewModel>;
   page: PageViewModel;
+  keyword: string;
   constructor(
     @Inject(IPostCategoryServiceToken) private postCategoryService: IPostCategoryService,
     private configService: ConfigService) {
@@ -32,13 +33,28 @@ export class PostCategoryComponent implements OnInit {
 
   }
 
+  searchPostCategory(event) {
+    this.setPage({ offset: 0 });
+  }
+
   setPage(pageInfo) {
     this.page.PageIndex = pageInfo.offset;
-    this.postCategoryService.Get('', '', this.page.PageIndex, this.page.PageSize).subscribe((response => {
+    this.postCategoryService.Get(this.keyword, '', this.page.PageIndex, this.page.PageSize).subscribe((response => {
       if (response) {
         this.postCategorys = response.Items;
         this.page.TotalCount = response.TotalCount;
       }
     }), error => { });
+  }
+
+  addPostCategory(event) {
+
+  }
+  editPostCategory(event, postId) {
+
+  }
+
+  deletePostCategory(event, postId) {
+
   }
 }

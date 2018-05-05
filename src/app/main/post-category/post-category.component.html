@@ -5,9 +5,17 @@
       <div class="card-body">
         <div class="col m-b-10">
           <div class="text-right">
-            <button class="btn btn-info">
-              <i class="fa fa-plus"></i> Add
-            </button>
+            <div class="row">
+              <div class="col-10">
+                <input class="form-control" name="keyword" placeholder="Search..." [(ngModel)]="keyword" (keyup.enter)="searchPostCategory($event)"
+                />
+              </div>
+              <div class="col-2">
+                <button class="btn btn-info" (click)="addPostCategory($event)">
+                  <i class="fa fa-plus"></i> Add
+                </button>
+              </div>
+            </div>
           </div>
         </div>
         <div class="col">
@@ -48,10 +56,10 @@
                 {{column.name}}
               </ng-template>
               <ng-template let-value="value" ngx-datatable-cell-template>
-                <button type="button" class="btn-xs btn-link">
+                <button type="button" class="btn-xs btn-link" (click)="editPostCategory($event, value.Id)">
                   <i class="fa fa-pencil fa-2x"></i>
                 </button>
-                <button type="button" class="btn-xs btn-link text-danger">
+                <button type="button" class="btn-xs btn-link text-danger" (click)="deletePostCategory($event, value.Id)">
                   <i class="fa fa-trash fa-2x"></i>
                 </button>
               </ng-template>
