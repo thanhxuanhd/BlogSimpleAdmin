@@ -9,4 +9,11 @@ export class PostCategoryViewModel {
     MetaDescription: string;
     Posts: Array<any>;
     PostCategories: Array<any>;
+    /**
+     *
+     */
+    constructor() {
+        this.Posts = [];
+        this.PostCategories = [];
+    }
 }

@@ -50,7 +50,8 @@ export class AuthenService {
                 userData.AuthenToken,
                 userData.ExpiresIn,
                 userData.FullName,
-                userData.Roles);
+                userData.Roles,
+                userData.Email);
         } else {
             user = null;
         }

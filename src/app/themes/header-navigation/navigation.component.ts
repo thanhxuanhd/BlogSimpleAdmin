@@ -1,5 +1,13 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, Inject } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+    IAuthenServiceToken,
+    IAuthenService,
+    LoggedInUser,
+    NotificationService,
+    UrlConfig
+} from '../../core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-navigation',
@@ -7,8 +15,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 })
 export class NavigationComponent implements AfterViewInit {
     name: string;
-
-    constructor() { }
+    currentUser: LoggedInUser;
+    constructor(@Inject(IAuthenServiceToken) private authenService: IAuthenService,
+        private router: Router,
+        private notificationService: NotificationService) {
+        this.currentUser = this.authenService.GetCurrentUser();
+    }
 
     // This is for Notifications
     notifications: Object[] = [{
@@ -111,5 +123,15 @@ export class NavigationComponent implements AfterViewInit {
         });
 
         $('body').trigger('resize');
+    }
+
+    logoutPage(event) {
+        this.authenService.Logout().subscribe((response) => {
+            this.router.navigate([UrlConfig.LOGIN]);
+            this.notificationService.printSuccessMessage('Success');
+        }, (error) => {
+            this.router.navigate([UrlConfig.LOGIN]);
+            this.notificationService.printErrorMessage('Fail');
+        });
     }
 }

@@ -5,13 +5,18 @@ import { IDataServiceToken } from '../core/tokens/data.service.token';
 import { ErrorComponentComponent } from './error-component/error-component.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { HandErrorService } from '../core';
+import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   imports: [
     CommonModule,
-    TranslateModule.forChild({})
+    TranslateModule.forChild({}),
+    NgbModule.forRoot()
   ],
   declarations: [ErrorComponentComponent],
-  exports: [ErrorComponentComponent, TranslateModule],
+  exports: [
+    ErrorComponentComponent,
+    TranslateModule],
   providers: [
     {
       provide: IAuthenServiceToken,
@@ -21,7 +26,8 @@ import { HandErrorService } from '../core';
       provide: IDataServiceToken,
       useClass: DataService
     },
-    HandErrorService
+    HandErrorService,
+    NgbActiveModal
   ]
 })
 export class SharedModule {

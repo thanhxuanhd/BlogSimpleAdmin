@@ -18,6 +18,7 @@ export * from './services/post-category.service';
 export * from './services/post.service';
 export * from './services/translate.service';
 export * from './services/error.service';
+export * from './services/auth.guard.service';
 // Token
 export * from './tokens/authen.service.token';
 export * from './tokens/data.service.token';

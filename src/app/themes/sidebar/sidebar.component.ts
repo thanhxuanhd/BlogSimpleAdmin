@@ -1,5 +1,11 @@
 import { Component, AfterViewInit, OnInit, Inject } from '@angular/core';
-import { IAuthenServiceToken, IAuthenService, UrlConfig, NotificationService } from '../../core';
+import {
+    IAuthenServiceToken,
+    IAuthenService,
+    UrlConfig,
+    NotificationService,
+    LoggedInUser
+} from '../../core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,14 +16,14 @@ export class SidebarComponent implements AfterViewInit {
     constructor(@Inject(IAuthenServiceToken) private authenService: IAuthenService,
         private router: Router,
         private notificationService: NotificationService) {
-
+        this.currentUser = this.authenService.GetCurrentUser();
     }
 
     // this is for the open close
     isActive = true;
     showMenu = '';
     showSubMenu = '';
-
+    currentUser: LoggedInUser;
     addExpandClass(element: any) {
         if (element === this.showMenu) {
             this.showMenu = '0';

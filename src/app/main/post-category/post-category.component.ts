@@ -13,7 +13,7 @@ import {
   styleUrls: ['./post-category.component.scss']
 })
 export class PostCategoryComponent implements OnInit {
-
+  postCategoryEntity: PostCategoryViewModel;
   postCategorys: Array<PostCategoryViewModel>;
   page: PageViewModel;
   keyword: string;
@@ -48,13 +48,17 @@ export class PostCategoryComponent implements OnInit {
   }
 
   addPostCategory(event) {
-
+    this.postCategoryEntity = new PostCategoryViewModel();
   }
   editPostCategory(event, postId) {
 
   }
 
   deletePostCategory(event, postId) {
+
+  }
+
+  savePostCategory(event) {
 
   }
 }

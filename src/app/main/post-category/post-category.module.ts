@@ -6,6 +6,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { IPostCategoryServiceToken, PostCategoryService } from '../../core';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PostCategoryAddEditComponent } from './post-category-add-edit/post-category-add-edit.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -15,7 +16,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [PostCategoryComponent],
+  declarations: [
+    PostCategoryComponent,
+    PostCategoryAddEditComponent],
   providers: [{
     provide: IPostCategoryServiceToken,
     useClass: PostCategoryService
