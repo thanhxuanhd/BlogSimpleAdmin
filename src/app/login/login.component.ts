@@ -12,10 +12,7 @@ import {
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/mergeMap';
-import { Jsonp } from '@angular/http';
+import { map, filter, mergeMap } from 'rxjs/operators';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -40,11 +37,11 @@ export class LoginComponent implements OnInit {
     private configuration: ConfigService
   ) {
     this
-      .router.events
-      .filter(event => event instanceof NavigationEnd)
-      .map(() => this.activatedRoute)
-      .mergeMap(route => route.data)
-      .subscribe((event) => {
+      .router.events.pipe(
+        filter(event => event instanceof NavigationEnd),
+        map(() => this.activatedRoute),
+        mergeMap(route => route.data)
+      ).subscribe((event) => {
         this.titleService.setTitle(event['title']);
       });
 

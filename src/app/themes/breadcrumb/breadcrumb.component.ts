@@ -1,9 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/mergeMap';
+import { filter, map, mergeMap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-breadcrumb',
@@ -18,15 +16,15 @@ export class BreadcrumbComponent implements OnInit {
         private titleService: Title
     ) {
         this
-            .router.events
-            .filter(event => event instanceof NavigationEnd)
-            .map(() => this.activatedRoute)
-            .map(route => {
-                while (route.firstChild) { route = route.firstChild; }
-                return route;
-            })
-            .filter(route => route.outlet === 'primary')
-            .mergeMap(route => route.data)
+            .router.events.pipe(
+                filter(event => event instanceof NavigationEnd),
+                map(() => this.activatedRoute),
+                map((route: any) => {
+                    while (route.firstChild) { route = route.firstChild; }
+                    return route;
+                }),
+                filter((route: any) => route.outlet === 'primary'),
+                mergeMap((route: any) => route.data))
             .subscribe((event) => {
                 this.titleService.setTitle(event['title']);
                 this.pageInfo = event;

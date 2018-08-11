@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { PostViewModel } from '../models/post.model';
 import { IDataServiceToken } from '../tokens/data.service.token';
 import { IDataService } from '../interfaces/idata-service';
-import { Observable } from 'rxjs/observable';
+import { Observable } from 'rxjs';
 @Injectable()
 export class PostService {
 

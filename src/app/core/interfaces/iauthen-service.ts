@@ -1,5 +1,5 @@
 import { LoginViewModel, LoggedInUser } from '../models/user.model';
-import { Observable } from 'rxjs/observable';
+import { Observable } from 'rxjs';
 
 export interface IAuthenService {
     Login(user: LoginViewModel): Observable<any>;

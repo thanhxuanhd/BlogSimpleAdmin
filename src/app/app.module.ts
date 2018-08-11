@@ -8,7 +8,6 @@ import { ConfigService } from './core';
 import { HttpClientModule } from '@angular/common/http';
 import { SpinnerComponent } from './themes/spinner.component';
 import { AppTranslationModule } from './app.translate.module';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 export function ConfigLoader(configService: ConfigService) {
   // Note: this factory need to return a function (that return a promise)
   return () => configService.load(environment.configFile);
@@ -23,10 +22,7 @@ export function ConfigLoader(configService: ConfigService) {
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    AppTranslationModule,
-    StoreDevtoolsModule.instrumentOnlyWithExtension({
-      maxAge: 5
-    })
+    AppTranslationModule
   ],
   providers: [
     ConfigService,

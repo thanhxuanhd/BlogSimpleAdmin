@@ -1,29 +1,35 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/observable';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { LoginViewModel, LoggedInUser } from '../models/user.model';
 import { SystemConfig } from '../enum/system.enum';
 import { ConfigService } from '../services/config.service';
-import 'rxjs/add/operator/map';
+import { map } from 'rxjs/operators';
 @Injectable()
 export class AuthenService {
 
     /**
      *
      */
-    constructor(private http: HttpClient, private configService: ConfigService) {
+    constructor(private http: HttpClient,
+        private configService: ConfigService) {
     }
 
     Login(user: LoginViewModel): Observable<any> {
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         const url = this.configService.getConfiguration().BASE_API + '/api/Account/Login';
-        return this.http.post(url, user, { headers: headers }).map(response => {
-            if (response) {
-                localStorage.setItem(SystemConfig.CURRENT_USER, JSON.stringify(response));
-            } else {
-                localStorage.removeItem(SystemConfig.CURRENT_USER);
-            }
-        });
+        return this.http.post(url, user, { headers: headers })
+            .pipe(
+                map((response) => {
+                    if (response) {
+                        localStorage.setItem(SystemConfig.CURRENT_USER, JSON.stringify(response));
+                    } else {
+                        localStorage.removeItem(SystemConfig.CURRENT_USER);
+                    }
+                })
+            );
+
+
     }
 
     Logout() {
