@@ -1,0 +1,39 @@
+<form novalidate [formGroup]="addEditForm">
+    <div class="row">
+        <input type="hidden" name="Id" />
+        <div class="col">
+            <div class="form-group">
+                <label for="categoryName">Category Name</label>
+                <input type="text" placeholder="Category Name" class="form-control" id="categoryName" formControlName="CategoryName" />
+            </div>
+            <div class="form-group">
+                <label for="catgegoryDescription">Catgegory Description</label>
+                <textarea placeholder="Catgegory Description" class="form-control" id="catgegoryDescription" rows="6" formControlName="CategoryDescription"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="categoryName">Parent Post Category</label>
+                <input type="text" placeholder="Parent Post Category" class="form-control" id="parentPostCategory" formControlName="ParentPostCategory"
+                />
+            </div>
+            <div class="form-group">
+                <label for="metaData">Meta Data</label>
+                <input type="text" placeholder="Meta Data" class="form-control" id="metaData" formControlName="MetaData" />
+            </div>
+            <div class="form-group">
+                <label for="categoryName">Meta Description</label>
+                <textarea  laceholder="Meta Description" class="form-control" id="metaDescription" formControlName="MetaDescription"></textarea>
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" name="IsPublic" id="isPublic" value="checkedValue" checked formControlName="IsPublic"> Is Public
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" (click)="onSave($event)" class="btn btn-primary">Save</button>
+        <button type="button" (click)="onCancel($event)" class="btn btn-default">Cancel</button>
+    </div>
+</form>

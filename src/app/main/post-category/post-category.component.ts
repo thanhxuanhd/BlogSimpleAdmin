@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, TemplateRef } from '@angular/core';
 import {
   IPostCategoryServiceToken,
   IPostCategoryService,
@@ -6,7 +6,8 @@ import {
   PageViewModel,
   ConfigService
 } from '../../core';
-
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 @Component({
   selector: 'app-post-category',
   templateUrl: './post-category.component.html',
@@ -17,9 +18,12 @@ export class PostCategoryComponent implements OnInit {
   postCategorys: Array<PostCategoryViewModel>;
   page: PageViewModel;
   keyword: string;
+  modalRef: BsModalRef;
+  isNew = true;
   constructor(
     @Inject(IPostCategoryServiceToken) private postCategoryService: IPostCategoryService,
-    private configService: ConfigService) {
+    private configService: ConfigService,
+    private modalService: BsModalService) {
     this.page = new PageViewModel();
     this.page.PageSize = this.configService.getConfiguration().PAGE_CONFIG.PageSize;
     this.page.ColumnWith = this.configService.getConfiguration().PAGE_CONFIG.ColumnWith;
@@ -47,11 +51,17 @@ export class PostCategoryComponent implements OnInit {
     }), error => { });
   }
 
-  addPostCategory(event) {
+  addPostCategory(event, template: TemplateRef<any>) {
+    event.preventDefault();
+    this.isNew = true;
+    this.modalRef = this.modalService.show(template, { class: 'modal-lg', backdrop: 'static' });
     this.postCategoryEntity = new PostCategoryViewModel();
   }
-  editPostCategory(event, postId) {
-
+  editPostCategory(event, postId, template: TemplateRef<any>) {
+    event.preventDefault();
+    this.isNew = false;
+    this.modalRef = this.modalService.show(template, { class: 'modal-lg', backdrop: 'static' });
+    this.postCategoryEntity = new PostCategoryViewModel();
   }
 
   deletePostCategory(event, postId) {
@@ -59,6 +69,9 @@ export class PostCategoryComponent implements OnInit {
   }
 
   savePostCategory(event) {
+    console.log('data', event);
+  }
+  cancelPostCategory() {
 
   }
 }

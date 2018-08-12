@@ -11,7 +11,7 @@
                 />
               </div>
               <div class="col-2">
-                <button class="btn btn-info" (click)="addPostCategory($event)">
+                <button class="btn btn-info" (click)="addPostCategory($event, templateModal)">
                   <i class="fa fa-plus"></i> Add
                 </button>
               </div>
@@ -56,7 +56,7 @@
                 {{column.name}}
               </ng-template>
               <ng-template let-value="value" ngx-datatable-cell-template>
-                <button type="button" class="btn-xs btn-link" (click)="editPostCategory($event, value.Id)">
+                <button type="button" class="btn-xs btn-link" (click)="editPostCategory($event, value.Id, templateModal)">
                   <i class="fa fa-pencil fa-2x"></i>
                 </button>
                 <button type="button" class="btn-xs btn-link text-danger" (click)="deletePostCategory($event, value.Id)">
@@ -71,4 +71,15 @@
   </div>
 </div>
 
-<app-post-category-add-edit [isNew]="true" [postCategoryViewModel]="postCategoryEntity" (save)="savePostCategory($event)"></app-post-category-add-edit>
+
+<ng-template #templateModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-post-category-add-edit [isNew]="true" [postCategoryViewModel]="postCategoryEntity" (save)="savePostCategory($event)" (cancel)="cancelPostCategory($event)"></app-post-category-add-edit>
+  </div>
+</ng-template>

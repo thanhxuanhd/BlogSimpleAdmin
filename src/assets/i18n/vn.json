@@ -7,7 +7,8 @@
         "btnForgotPassword": "Quên mật khẩu?",
         "Error": {
             "UserName": {
-                "required": "Tên đăng nhập là bắt buộc."
+                "required": "Tên đăng nhập là bắt buộc.",
+                "email": "Tên đăng nhập phải là email."
             },
             "Password": {
                 "required": "Mật là bắt buộc."

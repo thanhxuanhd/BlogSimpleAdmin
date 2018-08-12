@@ -149,6 +149,10 @@ input[type=password]:placeholder {
     color: #cccccc;
 }
 
+button[type='submit']:disabled {
+    opacity: .65;
+}
+
 /* ANIMATIONS */
 
 /* Simple CSS3 Fade-in-down Animation */

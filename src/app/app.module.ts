@@ -8,6 +8,7 @@ import { ConfigService } from './core';
 import { HttpClientModule } from '@angular/common/http';
 import { SpinnerComponent } from './themes/spinner.component';
 import { AppTranslationModule } from './app.translate.module';
+import { NotFoundComponent } from './shared';
 export function ConfigLoader(configService: ConfigService) {
   // Note: this factory need to return a function (that return a promise)
   return () => configService.load(environment.configFile);
@@ -16,7 +17,8 @@ export function ConfigLoader(configService: ConfigService) {
 @NgModule({
   declarations: [
     AppComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    NotFoundComponent
   ],
   imports: [
     HttpClientModule,

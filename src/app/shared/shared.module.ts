@@ -6,17 +6,19 @@ import { ErrorComponentComponent } from './error-component/error-component.compo
 import { TranslateModule } from '@ngx-translate/core';
 import { HandErrorService } from '../core';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-
+import { ModalModule } from 'ngx-bootstrap';
 @NgModule({
   imports: [
     CommonModule,
     TranslateModule.forChild({}),
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    ModalModule.forRoot()
   ],
   declarations: [ErrorComponentComponent],
   exports: [
     ErrorComponentComponent,
-    TranslateModule],
+    TranslateModule,
+  ],
   providers: [
     {
       provide: IAuthenServiceToken,

@@ -7,7 +7,8 @@
         "btnForgotPassword": "Forgot Password?",
         "Error": {
             "UserName": {
-                "required": "User Name is required."
+                "required": "Username is required.",
+                "email": "Username must be is email."
             },
             "Password": {
                 "required": "Password is required."

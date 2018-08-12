@@ -41,8 +41,19 @@
 
     <!-- Login Form -->
     <form [formGroup]="formLogin" novalidate (ngSubmit)="onFormLoginSubmit($event)">
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="{{'Login.lblUserName'| translate}}" formControlName="UserName">
-      <input type="password" id="password" class="fadeIn third" name="login" placeholder="{{'Login.lblPassword'| translate}}" formControlName="Password">
+      <div class="form-group">
+        <input type="text" id="login" class="fadeIn second" name="login" placeholder="{{'Login.lblUserName'| translate}}" formControlName="UserName">
+        <p *ngIf="formLogin.controls['UserName'].invalid && (formLogin.controls['UserName'].dirty || formLogin.controls['UserName'].touched)">
+          <span class="text-danger" *ngIf="formLogin.controls['UserName'].hasError('required')">{{'Login.Error.UserName.required'| translate}}</span>
+          <span class="text-danger" *ngIf="formLogin.controls['UserName'].hasError('email')">{{'Login.Error.UserName.email'| translate}}</span>
+        </p>
+      </div>
+      <div class="form-group">
+        <input type="password" id="password" class="fadeIn third" name="login" placeholder="{{'Login.lblPassword'| translate}}" formControlName="Password">
+        <p *ngIf="formLogin.controls['Password'].invalid && (formLogin.controls['Password'].dirty || formLogin.controls['Password'].touched)">
+          <span class="text-danger" *ngIf="formLogin.controls['Password'].hasError('required')">{{'Login.Error.Password.required'| translate}}</span>
+        </p>
+      </div>
       <button type="submit" class="fadeIn fourth btn" [disabled]="!formLogin.valid">
         {{'Login.btnLogin'| translate}}
       </button>
