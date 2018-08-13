@@ -72,6 +72,9 @@ export class PostCategoryComponent implements OnInit {
     console.log('data', event);
   }
   cancelPostCategory() {
-
+    if (this.modalRef) {
+      this.modalRef.hide();
+    }
+    this.postCategoryEntity = undefined;
   }
 }

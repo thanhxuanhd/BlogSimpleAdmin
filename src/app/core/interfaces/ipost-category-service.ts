@@ -5,4 +5,5 @@ export interface IPostCategoryService {
     Post(model: PostCategoryViewModel): any;
     Put(model: PostCategoryViewModel);
     Delete(id: any);
+    GetAll(): Observable<PostCategoryViewModel[]>;
 }

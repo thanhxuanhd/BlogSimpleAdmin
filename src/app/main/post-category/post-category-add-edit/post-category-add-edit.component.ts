@@ -4,11 +4,9 @@ import {
   Input,
   Output,
   EventEmitter,
-  ViewChild,
+  Inject,
 } from '@angular/core';
-import { PostCategoryViewModel } from '../../../core';
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { PostCategoryViewModel, IPostCategoryServiceToken, IPostCategoryService } from '../../../core';
 import { FormGroup, FormControl, Validators } from '../../../../../node_modules/@angular/forms';
 import { ValidationResponse } from '../../../core/models/error.model';
 
@@ -26,13 +24,16 @@ export class PostCategoryAddEditComponent implements OnInit {
     this._entity = new PostCategoryViewModel();
     if (this.active) {
       this._entity = postCategory;
+      this.addEditForm.reset(this._entity);
     } else {
       this._entity = undefined;
+      this.addEditForm.reset();
     }
   }
   @Output() cancel: EventEmitter<any> = new EventEmitter();
   @Output() save: EventEmitter<any> = new EventEmitter();
   _entity: PostCategoryViewModel;
+  public postCategorys: Array<PostCategoryViewModel> = [];
   private active = false;
 
   addEditForm: FormGroup = new FormGroup({
@@ -40,16 +41,18 @@ export class PostCategoryAddEditComponent implements OnInit {
     CategoryName: new FormControl('', [Validators.required, Validators.maxLength(50)]),
     CategoryDescription: new FormControl('', [Validators.maxLength(5000)]),
     IsPublic: new FormControl(false),
-    ParentPostCategory: new FormControl(null),
+    ParentPostCategory: new FormControl(''),
     Url: new FormControl(''),
     MetaData: new FormControl(''),
     MetaDescription: new FormControl('')
   });
 
-  constructor() {
+  constructor(@Inject(IPostCategoryServiceToken) private postCategoryService: IPostCategoryService, ) {
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.GetPostCategorys();
+  }
 
   onSave(event) {
     event.preventDefault();
@@ -63,5 +66,19 @@ export class PostCategoryAddEditComponent implements OnInit {
     this._entity = undefined;
     this.active = false;
     this.cancel.emit();
+  }
+
+  private GetPostCategorys() {
+    this.postCategoryService.GetAll()
+      .subscribe((response => {
+        if (response) {
+          this.postCategorys = response as Array<PostCategoryViewModel>;
+        }
+      }
+      ), error => { this.postCategorys = []; });
+  }
+
+  IsHasError(controlName) {
+    return this.addEditForm.controls[controlName].invalid;
   }
 }

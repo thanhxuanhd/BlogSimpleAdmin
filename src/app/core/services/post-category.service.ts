@@ -16,4 +16,8 @@ export class PostCategoryService {
     Post(model: PostCategoryViewModel): any { }
     Put(model: PostCategoryViewModel): any { }
     Delete(id: any) { }
+    GetAll(): Observable<PostCategoryViewModel[]> {
+        const url = `/api/PostCategory/GetAll`;
+        return this.dataService.Get(url);
+    }
 }
