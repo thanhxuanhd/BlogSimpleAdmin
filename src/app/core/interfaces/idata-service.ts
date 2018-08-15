@@ -5,4 +5,5 @@ export interface IDataService {
     Post(url: string, model?: any): Observable<any>;
     Put(url: string, model?: any): Observable<any>;
     Delete(url: string): Observable<any>;
+    HandError(error: any);
 }

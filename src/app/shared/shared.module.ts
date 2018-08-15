@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IAuthenServiceToken, AuthenService, DataService } from '../core';
+import { IAuthenServiceToken, AuthenService, DataService, IHelperServiceToken, HelperService } from '../core';
 import { IDataServiceToken } from '../core/tokens/data.service.token';
 import { ErrorComponentComponent } from './error-component/error-component.component';
 import { TranslateModule } from '@ngx-translate/core';
@@ -28,6 +28,10 @@ import { ModalModule } from 'ngx-bootstrap';
       provide: IDataServiceToken,
       useClass: DataService
     },
+    {
+      provide: IHelperServiceToken,
+      useClass: HelperService
+    },
     HandErrorService,
     NgbActiveModal
   ]
@@ -44,6 +48,10 @@ export class SharedModule {
         {
           provide: IDataServiceToken,
           useClass: DataService
+        },
+        {
+          provide: IHelperServiceToken,
+          useClass: HelperService
         },
         HandErrorService
       ]

@@ -47,7 +47,7 @@ export class PostCategoryAddEditComponent implements OnInit {
     MetaDescription: new FormControl('')
   });
 
-  constructor(@Inject(IPostCategoryServiceToken) private postCategoryService: IPostCategoryService, ) {
+  constructor(@Inject(IPostCategoryServiceToken) private postCategoryService: IPostCategoryService) {
   }
 
   ngOnInit() {
@@ -67,6 +67,7 @@ export class PostCategoryAddEditComponent implements OnInit {
     this.active = false;
     this.cancel.emit();
   }
+  onCategoryChange(event) { }
 
   private GetPostCategorys() {
     this.postCategoryService.GetAll()
@@ -75,7 +76,10 @@ export class PostCategoryAddEditComponent implements OnInit {
           this.postCategorys = response as Array<PostCategoryViewModel>;
         }
       }
-      ), error => { this.postCategorys = []; });
+      ), error => {
+        this.postCategorys = [];
+        this.postCategoryService.HandError(error);
+      });
   }
 
   IsHasError(controlName) {

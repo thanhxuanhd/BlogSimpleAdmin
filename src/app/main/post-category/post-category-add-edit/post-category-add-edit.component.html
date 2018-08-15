@@ -13,7 +13,7 @@
             <div class="form-group">
                 <label for="parentPostCategory">Parent Post Category</label>
                 <select class="form-control custom-select" id="parentPostCategory" formControlName="ParentPostCategory" name="ParentPostCategory">
-                    <option value="">-- Parent Post Category --</option>
+                    <option [value]="null">-- Parent Post Category --</option>
                     <option *ngFor="let postCategory of postCategorys" [ngValue]="postCategory.Id">{{postCategory.CategoryName}}</option>
                 </select>
                 <input type="hidden" formControlName="ParentPostCategory" name="ParentPostCategory">

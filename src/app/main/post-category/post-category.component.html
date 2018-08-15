@@ -55,11 +55,11 @@
               <ng-template let-column="column" ngx-datatable-header-template>
                 {{column.name}}
               </ng-template>
-              <ng-template let-value="value" ngx-datatable-cell-template>
-                <button type="button" class="btn-xs btn-link" (click)="editPostCategory($event, value.Id, templateModal)">
+              <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+                <button type="button" class="btn-xs btn-link" (click)="editPostCategory($event, row.Id, templateModal)">
                   <i class="fa fa-pencil fa-2x"></i>
                 </button>
-                <button type="button" class="btn-xs btn-link text-danger" (click)="deletePostCategory($event, value.Id)">
+                <button type="button" class="btn-xs btn-link text-danger" (click)="deletePostCategory($event, row.Id)">
                   <i class="fa fa-trash fa-2x"></i>
                 </button>
               </ng-template>
@@ -80,6 +80,7 @@
     </button>
   </div>
   <div class="modal-body">
-    <app-post-category-add-edit [isNew]="true" [postCategoryViewModel]="postCategoryEntity" (save)="savePostCategory($event)" (cancel)="cancelPostCategory($event)"></app-post-category-add-edit>
+    <app-post-category-add-edit [isNew]="true" [postCategoryViewModel]="postCategoryEntity" (save)="savePostCategory($event)"
+      (cancel)="cancelPostCategory($event)"></app-post-category-add-edit>
   </div>
 </ng-template>

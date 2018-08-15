@@ -38,7 +38,9 @@ export class PostComponent implements OnInit {
         this.posts = response.Items;
         this.page.TotalCount = response.TotalCount;
       }
-    }), error => { });
+    }), error => {
+      this.postService.HandError(error);
+    });
   }
 
   addPost(event) {

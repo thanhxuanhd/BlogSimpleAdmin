@@ -15,7 +15,7 @@ export class PostCategoryViewModel {
     constructor() {
         this.Posts = [];
         this.PostCategories = [];
-        this.ParentPostCategory = '';
+        this.ParentPostCategory = null;
         this.IsPublic = true;
     }
 }

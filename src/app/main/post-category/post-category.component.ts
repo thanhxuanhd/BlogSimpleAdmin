@@ -48,7 +48,9 @@ export class PostCategoryComponent implements OnInit {
         this.postCategorys = response.Items;
         this.page.TotalCount = response.TotalCount;
       }
-    }), error => { });
+    }), error => {
+      this.postCategoryService.HandError(error);
+    });
   }
 
   addPostCategory(event, template: TemplateRef<any>) {
@@ -60,8 +62,13 @@ export class PostCategoryComponent implements OnInit {
   editPostCategory(event, postId, template: TemplateRef<any>) {
     event.preventDefault();
     this.isNew = false;
-    this.modalRef = this.modalService.show(template, { class: 'modal-lg', backdrop: 'static' });
     this.postCategoryEntity = new PostCategoryViewModel();
+    this.postCategoryService.GetById(postId).subscribe(
+      (response: any) => {
+        this.postCategoryEntity = response;
+        this.modalRef = this.modalService.show(template, { class: 'modal-lg', backdrop: 'static' });
+      },
+      error => { this.postCategoryService.HandError(error); });
   }
 
   deletePostCategory(event, postId) {

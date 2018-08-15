@@ -51,4 +51,13 @@ export class DataService {
         const urlDelete = this.configuration.getConfiguration().BASE_API + url;
         return this.http.delete(urlDelete, { headers: this.header });
     }
+    HandError(error: any) {
+        switch (error.status) {
+            case 400:
+            case 401:
+            case 500:
+            default:
+                console.log('Hander Error');
+        }
+    }
 }
