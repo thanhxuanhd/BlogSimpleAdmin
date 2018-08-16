@@ -5,7 +5,7 @@ import 'rxjs/operator/filter';
 import 'rxjs/operator/map';
 
 @Injectable()
-export class HandErrorService {
+export class ErrorService {
     private addEditForm: FormGroup;
     public submitted = false;
 
@@ -69,8 +69,7 @@ export class HandErrorService {
             field.split('.').forEach(f => {
                 if (group.contains(f)) {
                     control = group.get(f);
-                    // tslint:disable-next-line:curly
-                    if (control instanceof FormGroup) group = control;
+                    if (control instanceof FormGroup) { group = control; }
                 } else {
                     control = group;
                 }

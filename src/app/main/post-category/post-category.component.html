@@ -80,7 +80,7 @@
     </button>
   </div>
   <div class="modal-body">
-    <app-post-category-add-edit [isNew]="true" [postCategoryViewModel]="postCategoryEntity" (save)="savePostCategory($event)"
+    <app-post-category-add-edit [isNew]="true" [postCategoryViewModel]="postCategoryEntity" [errors]="errors" (save)="savePostCategory($event)"
       (cancel)="cancelPostCategory($event)"></app-post-category-add-edit>
   </div>
 </ng-template>

@@ -4,7 +4,8 @@ import {
   IPostCategoryService,
   PostCategoryViewModel,
   PageViewModel,
-  ConfigService
+  ConfigService,
+  ErrorHandle
 } from '../../core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
@@ -20,6 +21,7 @@ export class PostCategoryComponent implements OnInit {
   keyword: string;
   modalRef: BsModalRef;
   isNew = true;
+  public errors: ErrorHandle = new ErrorHandle();
   constructor(
     @Inject(IPostCategoryServiceToken) private postCategoryService: IPostCategoryService,
     private configService: ConfigService,
@@ -76,7 +78,26 @@ export class PostCategoryComponent implements OnInit {
   }
 
   savePostCategory(event) {
-    console.log('data', event);
+    if (this.isNew) {
+      this.postCategoryService.Post(event)
+        .subscribe(
+          (response) => {
+            this.postCategoryEntity = undefined;
+            this.modalRef.hide();
+          },
+          (responseErrors: any) => {
+            console.log('responseErrors', responseErrors);
+            if (responseErrors.status === 400 && responseErrors.error) {
+              this.errors = responseErrors.error;
+
+            } else {
+              this.postCategoryService.HandError(responseErrors);
+            }
+          }
+        );
+    } else {
+      this.postCategoryService.Put(event);
+    }
   }
   cancelPostCategory() {
     if (this.modalRef) {

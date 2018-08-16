@@ -53,7 +53,6 @@ export class DataService {
     }
     HandError(error: any) {
         switch (error.status) {
-            case 400:
             case 401:
             case 500:
             default:

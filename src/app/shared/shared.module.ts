@@ -1,22 +1,26 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IAuthenServiceToken, AuthenService, DataService, IHelperServiceToken, HelperService } from '../core';
+import {
+  IAuthenServiceToken,
+  AuthenService, DataService,
+  IHelperServiceToken,
+  HelperService,
+  ErrorService,
+  IErrorServiceToken
+} from '../core';
 import { IDataServiceToken } from '../core/tokens/data.service.token';
-import { ErrorComponentComponent } from './error-component/error-component.component';
+import { ErrorComponent } from './error-component/error-component.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { HandErrorService } from '../core';
-import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalModule } from 'ngx-bootstrap';
 @NgModule({
   imports: [
     CommonModule,
     TranslateModule.forChild({}),
-    NgbModule.forRoot(),
     ModalModule.forRoot()
   ],
-  declarations: [ErrorComponentComponent],
+  declarations: [ErrorComponent],
   exports: [
-    ErrorComponentComponent,
+    ErrorComponent,
     TranslateModule,
   ],
   providers: [
@@ -32,8 +36,10 @@ import { ModalModule } from 'ngx-bootstrap';
       provide: IHelperServiceToken,
       useClass: HelperService
     },
-    HandErrorService,
-    NgbActiveModal
+    {
+      provide: IErrorServiceToken,
+      useClass: ErrorService
+    }
   ]
 })
 export class SharedModule {
@@ -53,7 +59,10 @@ export class SharedModule {
           provide: IHelperServiceToken,
           useClass: HelperService
         },
-        HandErrorService
+        {
+          provide: IErrorServiceToken,
+          useClass: ErrorService
+        },
       ]
     };
   }
@@ -61,7 +70,12 @@ export class SharedModule {
   public static forChild(): ModuleWithProviders {
     return <ModuleWithProviders>{
       ngModule: SharedModule,
-      providers: [HandErrorService]
+      providers: [
+        {
+          provide: IErrorServiceToken,
+          useClass: ErrorService
+        }
+      ]
     };
   }
 }

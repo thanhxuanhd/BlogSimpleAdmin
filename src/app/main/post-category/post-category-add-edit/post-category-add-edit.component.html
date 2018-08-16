@@ -5,10 +5,12 @@
             <div class="form-group">
                 <label for="categoryName">Category Name</label>
                 <input type="text" placeholder="Category Name" class="form-control" id="categoryName" formControlName="CategoryName" />
+                <app-error [viewName]="'PostCategory'" [errors]="fieldErrors('CategoryName')"></app-error>
             </div>
             <div class="form-group">
                 <label for="catgegoryDescription">Catgegory Description</label>
                 <textarea placeholder="Catgegory Description" class="form-control" id="catgegoryDescription" rows="6" formControlName="CategoryDescription"></textarea>
+                <app-error [viewName]="'PostCategory'" [errors]="fieldErrors('CategoryDescription')"></app-error>
             </div>
             <div class="form-group">
                 <label for="parentPostCategory">Parent Post Category</label>
@@ -17,20 +19,24 @@
                     <option *ngFor="let postCategory of postCategorys" [ngValue]="postCategory.Id">{{postCategory.CategoryName}}</option>
                 </select>
                 <input type="hidden" formControlName="ParentPostCategory" name="ParentPostCategory">
+                <app-error [viewName]="'PostCategory'" [errors]="fieldErrors('ParentPostCategory')"></app-error>
             </div>
             <div class="form-group">
                 <label for="metaData">Meta Data</label>
                 <input type="text" placeholder="Meta Data" class="form-control" id="metaData" formControlName="MetaData" />
+                <app-error [viewName]="'PostCategory'" [errors]="fieldErrors('MetaData')"></app-error>
             </div>
             <div class="form-group">
                 <label for="metaDescription">Meta Description</label>
                 <textarea laceholder="Meta Description" class="form-control" id="metaDescription" formControlName="MetaDescription"></textarea>
+                <app-error [viewName]="'PostCategory'" [errors]="fieldErrors('MetaDescription')"></app-error>
             </div>
             <div class="form-group">
                 <div class="custom-control custom-checkbox">
                     <input class="custom-control-input" name="IsPublic" id="isPublic" formControlName="IsPublic" id="isPublic" type="checkbox">
                     <label class="custom-control-label" for="isPublic">Is Public</label>
                 </div>
+                <app-error [viewName]="'PostCategory'" [errors]="fieldErrors('IsPublic')"></app-error>
             </div>
         </div>
     </div>

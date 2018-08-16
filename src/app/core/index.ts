@@ -4,12 +4,14 @@ export * from './models/post.model';
 export * from './models/post-category.model';
 export * from './models/config.model';
 export * from './models/page.model';
+export * from './models/error.model';
 // Interface
 export * from './interfaces/iauthen-service';
 export * from './interfaces/idata-service';
 export * from './interfaces/ipost-category-service';
 export * from './interfaces/ipost-service';
 export * from './interfaces/ihelper-service';
+export * from './interfaces/ierror-service';
 // Service
 export * from './services/config.service';
 export * from './services/authen.service';
@@ -27,6 +29,7 @@ export * from './tokens/data.service.token';
 export * from './tokens/post-category.service.token';
 export * from './tokens/post.service.token';
 export * from './tokens/helper.service.token';
+export * from './tokens/error.service.token';
 // Enum
 export * from './enum/system.enum';
 

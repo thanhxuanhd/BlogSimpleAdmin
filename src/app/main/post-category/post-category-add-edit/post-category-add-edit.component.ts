@@ -6,9 +6,16 @@ import {
   EventEmitter,
   Inject,
 } from '@angular/core';
-import { PostCategoryViewModel, IPostCategoryServiceToken, IPostCategoryService } from '../../../core';
+import {
+  PostCategoryViewModel,
+  IPostCategoryServiceToken,
+  IPostCategoryService,
+  ErrorHandle,
+  IErrorServiceToken,
+  IErrorService,
+  FormError
+} from '../../../core';
 import { FormGroup, FormControl, Validators } from '../../../../../node_modules/@angular/forms';
-import { ValidationResponse } from '../../../core/models/error.model';
 
 @Component({
   selector: 'app-post-category-add-edit',
@@ -30,6 +37,20 @@ export class PostCategoryAddEditComponent implements OnInit {
       this.addEditForm.reset();
     }
   }
+  @Input()
+  public set errors(error: ErrorHandle) {
+    if (error && error.Validations && error.Validations.length > 0) {
+      error.Validations.forEach(field => {
+        const control = this.errorService.findFieldControl(field.Key);
+        const errors = this.errorService.fetchFieldErrors(
+          error.Validations,
+          field.Key
+        );
+        control.setErrors(errors);
+      });
+    }
+  }
+
   @Output() cancel: EventEmitter<any> = new EventEmitter();
   @Output() save: EventEmitter<any> = new EventEmitter();
   _entity: PostCategoryViewModel;
@@ -38,7 +59,7 @@ export class PostCategoryAddEditComponent implements OnInit {
 
   addEditForm: FormGroup = new FormGroup({
     Id: new FormControl(''),
-    CategoryName: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+    CategoryName: new FormControl('', ),
     CategoryDescription: new FormControl('', [Validators.maxLength(5000)]),
     IsPublic: new FormControl(false),
     ParentPostCategory: new FormControl(''),
@@ -47,7 +68,11 @@ export class PostCategoryAddEditComponent implements OnInit {
     MetaDescription: new FormControl('')
   });
 
-  constructor(@Inject(IPostCategoryServiceToken) private postCategoryService: IPostCategoryService) {
+  constructor(
+    @Inject(IPostCategoryServiceToken) private postCategoryService: IPostCategoryService,
+    @Inject(IErrorServiceToken) private errorService: IErrorService
+  ) {
+    errorService.setFormEdit(this.addEditForm);
   }
 
   ngOnInit() {
@@ -84,5 +109,9 @@ export class PostCategoryAddEditComponent implements OnInit {
 
   IsHasError(controlName) {
     return this.addEditForm.controls[controlName].invalid;
+  }
+
+  public fieldErrors(name: string): FormError[] {
+    return this.errorService.fieldErrors(name);
   }
 }
