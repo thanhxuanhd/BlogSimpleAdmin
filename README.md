@@ -1,6 +1,12 @@
-# BlogSimpleAdmin
+# Blog Simple Admin
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
+
+API Service [Blog Simple Angular](https://github.com/thanhxuanhd/BlogSimpleAngular)
+
+Command Initial  
+Set Blog.WebApi is default project.
+Run command `update-database` or `dotnet ef database update`
 
 ## Development server
 
