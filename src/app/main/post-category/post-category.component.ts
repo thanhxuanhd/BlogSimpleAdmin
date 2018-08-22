@@ -21,7 +21,7 @@ export class PostCategoryComponent implements OnInit {
   keyword: string;
   modalRef: BsModalRef;
   isNew = true;
-  public errors: ErrorHandle = new ErrorHandle();
+  public errors: ErrorHandle[] = [];
   constructor(
     @Inject(IPostCategoryServiceToken) private postCategoryService: IPostCategoryService,
     private configService: ConfigService,
@@ -57,6 +57,7 @@ export class PostCategoryComponent implements OnInit {
 
   addPostCategory(event, template: TemplateRef<any>) {
     event.preventDefault();
+    this.errors = [];
     this.isNew = true;
     this.modalRef = this.modalService.show(template, { class: 'modal-lg', backdrop: 'static' });
     this.postCategoryEntity = new PostCategoryViewModel();
@@ -64,6 +65,7 @@ export class PostCategoryComponent implements OnInit {
   editPostCategory(event, postId, template: TemplateRef<any>) {
     event.preventDefault();
     this.isNew = false;
+    this.errors = [];
     this.postCategoryEntity = new PostCategoryViewModel();
     this.postCategoryService.GetById(postId).subscribe(
       (response: any) => {
@@ -77,26 +79,41 @@ export class PostCategoryComponent implements OnInit {
 
   }
 
-  savePostCategory(event) {
+  savePostCategory(event: PostCategoryViewModel) {
     if (this.isNew) {
+      delete event.Id;
       this.postCategoryService.Post(event)
         .subscribe(
           (response) => {
             this.postCategoryEntity = undefined;
             this.modalRef.hide();
+            this.errors = [];
+            this.setPage({ offset: 0 });
           },
           (responseErrors: any) => {
-            console.log('responseErrors', responseErrors);
             if (responseErrors.status === 400 && responseErrors.error) {
               this.errors = responseErrors.error;
-
             } else {
               this.postCategoryService.HandError(responseErrors);
             }
           }
         );
     } else {
-      this.postCategoryService.Put(event);
+      this.postCategoryService.Put(event)
+        .subscribe(
+          (response) => {
+            this.postCategoryEntity = undefined;
+            this.modalRef.hide();
+            this.errors = [];
+            this.setPage({ offset: 0 });
+          },
+          (responseErrors: any) => {
+            if (responseErrors.status === 400 && responseErrors.error) {
+              this.errors = responseErrors.error;
+            } else {
+              this.postCategoryService.HandError(responseErrors);
+            }
+          });
     }
   }
   cancelPostCategory() {

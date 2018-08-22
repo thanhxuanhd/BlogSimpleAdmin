@@ -1,5 +1,6 @@
 export class ErrorHandle {
     Validations: Array<ValidationResponse>;
+    Key: string;
     constructor() {
         this.Validations = [];
     }

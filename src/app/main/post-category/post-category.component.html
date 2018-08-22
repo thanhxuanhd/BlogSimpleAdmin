@@ -12,7 +12,7 @@
               </div>
               <div class="col-2">
                 <button class="btn btn-info" (click)="addPostCategory($event, templateModal)">
-                  <i class="fa fa-plus"></i> Add
+                  <i class="fa fa-plus"></i> {{ 'Common.btnCreate' | translate }}
                 </button>
               </div>
             </div>
@@ -24,7 +24,7 @@
             [footerHeight]="page.FooterHeight">
             <ngx-datatable-column name="No" [width]="page.ColumnWith">
               <ng-template let-column="column" ngx-datatable-header-template>
-                {{column.name}}
+                {{'Common.STT'| translate}}
               </ng-template>
               <ng-template let-value="value" let-rowIndex="rowIndex" ngx-datatable-cell-template>
                 <span>{{rowIndex +1}}</span>
@@ -32,7 +32,7 @@
             </ngx-datatable-column>
             <ngx-datatable-column name="Category Name">
               <ng-template let-column="column" ngx-datatable-header-template>
-                {{column.name}}
+                {{'PostCategory.lblCategoryName'| translate}}
               </ng-template>
               <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                 <strong>{{row.CategoryName}}</strong>
@@ -40,7 +40,7 @@
             </ngx-datatable-column>
             <ngx-datatable-column name="Public">
               <ng-template let-column="column" ngx-datatable-header-template>
-                {{column.name}}
+                {{'PostCategory.lblIsPublic'| translate}}
               </ng-template>
               <ng-template let-row="row" ngx-datatable-cell-template>
                 <span class="text-success" *ngIf="row.IsPublic">
@@ -53,7 +53,7 @@
             </ngx-datatable-column>
             <ngx-datatable-column name="Action" [width]="page.ColumnWith">
               <ng-template let-column="column" ngx-datatable-header-template>
-                {{column.name}}
+                {{'Common.Action'| translate}}
               </ng-template>
               <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
                 <button type="button" class="btn-xs btn-link" (click)="editPostCategory($event, row.Id, templateModal)">
@@ -74,13 +74,15 @@
 
 <ng-template #templateModal>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">Modal</h4>
+    <h4 class="modal-title pull-left" translate>
+      {{ isNew ? 'PostCategory.lblPostCategoryModalCreate' : 'PostCategory.lblPostCategoryModalEdit'}}
+    </h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <app-post-category-add-edit [isNew]="true" [postCategoryViewModel]="postCategoryEntity" [errors]="errors" (save)="savePostCategory($event)"
+    <app-post-category-add-edit [isNew]="isNew" [postCategoryViewModel]="postCategoryEntity" [errors]="errors" (save)="savePostCategory($event)"
       (cancel)="cancelPostCategory($event)"></app-post-category-add-edit>
   </div>
 </ng-template>

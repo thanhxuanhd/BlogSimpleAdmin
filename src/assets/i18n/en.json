@@ -31,6 +31,27 @@
             "Title": "Languages",
             "LblEnglish": "English",
             "LblVietNam": "VietNamese"
+        },
+        "btnSave": "Save",
+        "btnCancel": "Cancel",
+        "STT":"No.",
+        "Action": "Action"
+    },
+    "PostCategory": {
+        "lblCategoryName": "Name",
+        "lblCategoryDescription": "Description",
+        "lblParentPostCategory": "Parent Category",
+        "lblUrl": "Url",
+        "lblMetaData": "Meta data",
+        "lblMetaDescription": "Meta Description",
+        "lblIsPublic": "Public",
+        "lblPostCategoryModalCreate": "Create New Post Category",
+        "lblPostCategoryModalEdit": "Update Post Category",
+        "Errors": {
+            "CategoryName": {
+                "required": "Name must be required",
+                "POST_CATEGORY_NAME_REQUIRED" : "Name must be required"
+            }
         }
     }
 }

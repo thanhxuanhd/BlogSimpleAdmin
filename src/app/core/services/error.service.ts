@@ -24,17 +24,17 @@ export class ErrorService {
         }
     }
 
-    protected handleSubmitError(error: any) {
-        if (error.status === 422) {
-            const data = error.json();
-            const fields = Object.keys(data || {});
-            fields.forEach(field => {
-                const control = this.findFieldControl(field);
-                const errors = this.fetchFieldErrors(data, field);
-                control.setErrors(errors);
-            });
-        }
-    }
+    // protected handleSubmitError(error: any) {
+    //     if (error.status === 422) {
+    //         const data = error.json();
+    //         const fields = Object.keys(data || {});
+    //         fields.forEach(field => {
+    //             const control = this.findFieldControl(field);
+    //             const errors = this.fetchFieldErrors(data, field);
+    //             control.setErrors(errors);
+    //         });
+    //     }
+    // }
 
     public getErrors(
         control: AbstractControl,
@@ -81,12 +81,12 @@ export class ErrorService {
         return control;
     }
 
-    public fetchFieldErrors(data: any[], field: string): any {
+    public fetchFieldErrors(data: any[]): any {
         const errors = {};
-        const errorControl = data.filter(error => error.fieldName === field);
-        errorControl.forEach(error => {
-            errors[error.messageCode] = error;
+        data.forEach((error: any) => {
+            errors[error] = error;
         });
+        console.log('error service: ', errors);
         return errors;
     }
 }

@@ -1,7 +1,7 @@
 export class PostCategoryViewModel {
     Id: any;
     CategoryName: string;
-    CagegoryDescription: string;
+    CategoryDescription: string;
     IsPublic: boolean;
     ParentPostCategory: any;
     Url: string;
@@ -15,7 +15,6 @@ export class PostCategoryViewModel {
     constructor() {
         this.Posts = [];
         this.PostCategories = [];
-        this.ParentPostCategory = null;
         this.IsPublic = true;
     }
 }

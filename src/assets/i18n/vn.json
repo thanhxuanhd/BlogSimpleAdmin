@@ -31,6 +31,27 @@
             "Title": "Ngôn ngữ",
             "LblEnglish": "Tiếng Anh",
             "LblVietNam": "Tiếng Việt"
+        },
+        "btnSave": "Lưu",
+        "btnCancel": "Hủy",
+        "STT": "STT",
+        "Action" : "Thao tác"
+    },
+    "PostCategory": {
+        "lblCategoryName": "Tên",
+        "lblCategoryDescription": "Mô tả",
+        "lblParentPostCategory": "Danh mục cha",
+        "lblUrl": "Đường dẫn",
+        "lblMetaData": "Meta data",
+        "lblMetaDescription": "Meta Description",
+        "lblIsPublic": "Hiển thị",
+        "lblPostCategoryModalCreate": "Thêm mới danh mục tin",
+        "lblPostCategoryModalEdit": "Chỉnh sửa danh mục tin",
+        "Errors": {
+            "CategoryName": {
+                "required": "Tên danh mục là bắt buộc",
+                "POST_CATEGORY_NAME_REQUIRED" : "Tên danh mục là bắt buộc"
+            }
         }
     }
 }

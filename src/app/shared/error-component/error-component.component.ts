@@ -12,6 +12,7 @@ export class ErrorComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.errors);
   }
 
 }

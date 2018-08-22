@@ -1,40 +1,45 @@
 <form novalidate [formGroup]="addEditForm">
     <div class="row">
-        <input type="hidden" name="Id" />
+        <input type="hidden" name="Id" formControlName="Id" />
         <div class="col">
             <div class="form-group">
-                <label for="categoryName">Category Name</label>
-                <input type="text" placeholder="Category Name" class="form-control" id="categoryName" formControlName="CategoryName" />
+                <label for="categoryName">{{'PostCategory.lblCategoryName'| translate}}</label>
+                <input type="text" class="form-control" id="categoryName" formControlName="CategoryName" />
                 <app-error [viewName]="'PostCategory'" [errors]="fieldErrors('CategoryName')"></app-error>
             </div>
             <div class="form-group">
-                <label for="catgegoryDescription">Catgegory Description</label>
-                <textarea placeholder="Catgegory Description" class="form-control" id="catgegoryDescription" rows="6" formControlName="CategoryDescription"></textarea>
+                <label for="catgegoryDescription">{{'PostCategory.lblCategoryDescription'| translate}}</label>
+                <textarea class="form-control" id="catgegoryDescription" rows="6" formControlName="CategoryDescription"></textarea>
                 <app-error [viewName]="'PostCategory'" [errors]="fieldErrors('CategoryDescription')"></app-error>
             </div>
             <div class="form-group">
-                <label for="parentPostCategory">Parent Post Category</label>
+                <label for="parentPostCategory">{{'PostCategory.lblParentPostCategory'| translate}}</label>
                 <select class="form-control custom-select" id="parentPostCategory" formControlName="ParentPostCategory" name="ParentPostCategory">
-                    <option [value]="null">-- Parent Post Category --</option>
+                    <option [value]="null">-- {{'PostCategory.lblParentPostCategory'| translate}} --</option>
                     <option *ngFor="let postCategory of postCategorys" [ngValue]="postCategory.Id">{{postCategory.CategoryName}}</option>
                 </select>
                 <input type="hidden" formControlName="ParentPostCategory" name="ParentPostCategory">
                 <app-error [viewName]="'PostCategory'" [errors]="fieldErrors('ParentPostCategory')"></app-error>
             </div>
             <div class="form-group">
-                <label for="metaData">Meta Data</label>
-                <input type="text" placeholder="Meta Data" class="form-control" id="metaData" formControlName="MetaData" />
+                <label for="url">{{'PostCategory.lblUrl'| translate}}</label>
+                <input type="text" placeholder="Url" class="form-control" id="url" formControlName="Url" />
+                <app-error [viewName]="'PostCategory'" [errors]="fieldErrors('Url')"></app-error>
+            </div>
+            <div class="form-group">
+                <label for="metaData">{{'PostCategory.lblMetaData'| translate}}</label>
+                <input type="text" class="form-control" id="metaData" formControlName="MetaData" />
                 <app-error [viewName]="'PostCategory'" [errors]="fieldErrors('MetaData')"></app-error>
             </div>
             <div class="form-group">
-                <label for="metaDescription">Meta Description</label>
-                <textarea laceholder="Meta Description" class="form-control" id="metaDescription" formControlName="MetaDescription"></textarea>
+                <label for="metaDescription">{{'PostCategory.lblMetaDescription'| translate}}</label>
+                <textarea class="form-control" id="metaDescription" formControlName="MetaDescription"></textarea>
                 <app-error [viewName]="'PostCategory'" [errors]="fieldErrors('MetaDescription')"></app-error>
             </div>
             <div class="form-group">
                 <div class="custom-control custom-checkbox">
                     <input class="custom-control-input" name="IsPublic" id="isPublic" formControlName="IsPublic" id="isPublic" type="checkbox">
-                    <label class="custom-control-label" for="isPublic">Is Public</label>
+                    <label class="custom-control-label" for="isPublic">{{'PostCategory.lblIsPublic'| translate}}</label>
                 </div>
                 <app-error [viewName]="'PostCategory'" [errors]="fieldErrors('IsPublic')"></app-error>
             </div>
@@ -42,7 +47,7 @@
     </div>
     <div class="modal-footer">
         <button type="submit" (click)="onSave($event)" class="btn btn-success" [disabled]="!addEditForm.valid">
-            <i class="ti-save"></i> Save</button>
-        <button type="button" (click)="onCancel($event)" class="btn btn-default">Cancel</button>
+            <i class="ti-save"></i> {{'Common.btnSave' | translate}}</button>
+        <button type="button" (click)="onCancel($event)" class="btn btn-default">{{'Common.btnCancel' | translate}}</button>
     </div>
 </form>

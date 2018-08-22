@@ -15,7 +15,7 @@ import {
   IErrorService,
   FormError
 } from '../../../core';
-import { FormGroup, FormControl, Validators } from '../../../../../node_modules/@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-post-category-add-edit',
@@ -30,6 +30,7 @@ export class PostCategoryAddEditComponent implements OnInit {
     this.active = postCategory !== undefined || postCategory !== null;
     this._entity = new PostCategoryViewModel();
     if (this.active) {
+      this.submittedAddEditForm = false;
       this._entity = postCategory;
       this.addEditForm.reset(this._entity);
     } else {
@@ -38,15 +39,14 @@ export class PostCategoryAddEditComponent implements OnInit {
     }
   }
   @Input()
-  public set errors(error: ErrorHandle) {
-    if (error && error.Validations && error.Validations.length > 0) {
-      error.Validations.forEach(field => {
-        const control = this.errorService.findFieldControl(field.Key);
-        const errors = this.errorService.fetchFieldErrors(
-          error.Validations,
-          field.Key
-        );
-        control.setErrors(errors);
+  public set errors(errors: ErrorHandle[]) {
+    if (errors && errors.length > 0) {
+      errors.forEach(error => {
+        if (error.Validations && error.Validations.length > 0) {
+          const control = this.errorService.findFieldControl(error.Key);
+          const errorsValue = this.errorService.fetchFieldErrors(error.Validations);
+          control.setErrors(errorsValue);
+        }
       });
     }
   }
@@ -56,16 +56,18 @@ export class PostCategoryAddEditComponent implements OnInit {
   _entity: PostCategoryViewModel;
   public postCategorys: Array<PostCategoryViewModel> = [];
   private active = false;
-
+  private submittedAddEditForm = false;
   addEditForm: FormGroup = new FormGroup({
-    Id: new FormControl(''),
-    CategoryName: new FormControl('', ),
+    Id: new FormControl(),
+    CategoryName: new FormControl('', [Validators.required]),
     CategoryDescription: new FormControl('', [Validators.maxLength(5000)]),
     IsPublic: new FormControl(false),
     ParentPostCategory: new FormControl(''),
     Url: new FormControl(''),
     MetaData: new FormControl(''),
-    MetaDescription: new FormControl('')
+    MetaDescription: new FormControl(''),
+    Posts: new FormControl([]),
+    PostCategories: new FormControl([])
   });
 
   constructor(
@@ -82,12 +84,14 @@ export class PostCategoryAddEditComponent implements OnInit {
   onSave(event) {
     event.preventDefault();
     if (this.addEditForm.valid) {
+      this.submittedAddEditForm = true;
       this.save.emit(this.addEditForm.value);
     }
   }
 
   onCancel(event) {
     event.preventDefault();
+    this.submittedAddEditForm = false;
     this._entity = undefined;
     this.active = false;
     this.cancel.emit();
@@ -112,6 +116,11 @@ export class PostCategoryAddEditComponent implements OnInit {
   }
 
   public fieldErrors(name: string): FormError[] {
-    return this.errorService.fieldErrors(name);
+    const control = this.errorService.findFieldControl(name);
+    if (control && (control.touched || this.submittedAddEditForm) && control.errors) {
+      return this.errorService.getErrors(control, name);
+    } else {
+      return undefined;
+    }
   }
 }
