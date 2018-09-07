@@ -20,9 +20,11 @@ import { ModalModule } from 'ngx-bootstrap';
   declarations: [
     PostCategoryComponent,
     PostCategoryAddEditComponent],
-  providers: [{
-    provide: IPostCategoryServiceToken,
-    useClass: PostCategoryService
-  }]
+  providers: [
+    {
+      provide: IPostCategoryServiceToken,
+      useClass: PostCategoryService
+    }
+  ]
 })
 export class PostCategoryModule { }

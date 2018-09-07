@@ -26,7 +26,7 @@ export class PostService {
     }
     GetById(id: any): Observable<PostViewModel> {
         const url = `${this.URL_API_POST}/${id}`;
-        return this.dataService.Delete(url);
+        return this.dataService.Get(url);
     }
     HandError(error: any) {
         this.dataService.HandError(error);

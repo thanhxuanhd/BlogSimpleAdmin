@@ -62,12 +62,12 @@ export class PostCategoryComponent implements OnInit {
     this.modalRef = this.modalService.show(template, { class: 'modal-lg', backdrop: 'static' });
     this.postCategoryEntity = new PostCategoryViewModel();
   }
-  editPostCategory(event, postId, template: TemplateRef<any>) {
+  editPostCategory(event, postCategoryId, template: TemplateRef<any>) {
     event.preventDefault();
     this.isNew = false;
     this.errors = [];
     this.postCategoryEntity = new PostCategoryViewModel();
-    this.postCategoryService.GetById(postId).subscribe(
+    this.postCategoryService.GetById(postCategoryId).subscribe(
       (response: any) => {
         this.postCategoryEntity = response;
         this.modalRef = this.modalService.show(template, { class: 'modal-lg', backdrop: 'static' });

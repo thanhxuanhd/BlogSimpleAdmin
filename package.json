@@ -29,6 +29,7 @@
     "@ngx-translate/core": "~10.0.2",
     "@ngx-translate/http-loader": "^3.0.1",
     "@swimlane/ngx-datatable": "^13.1.0",
+    "@tinymce/tinymce-angular": "^2.0.1",
     "alertifyjs": "^1.11.1",
     "angular-calendar": "^0.25.2",
     "bootstrap": "^4.0.0-beta",

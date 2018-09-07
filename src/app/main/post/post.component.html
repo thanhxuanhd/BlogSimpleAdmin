@@ -8,11 +8,11 @@
             <div class="text-right">
               <div class="row">
                 <div class="col-10">
-                  <input class="form-control" name="keyword" placeholder="Search..." [(ngModel)]="keyword" (keyup.enter)="searchPost($event)"
-                  />
+                  <input class="form-control" name="keyword" placeholder="Search..." [(ngModel)]="keyword"
+                    (keyup.enter)="searchPost($event)" />
                 </div>
                 <div class="col-2">
-                  <button class="btn btn-info" (click)="addPost($event)">
+                  <button class="btn btn-info" (click)="addPost($event, templateModal)">
                     <i class="fa fa-plus"></i> Add
                   </button>
                 </div>
@@ -20,9 +20,9 @@
             </div>
           </div>
           <div class="col">
-            <ngx-datatable class="material" [rows]="posts" [columnMode]="'force'" [headerHeight]="page.HeaderHeight" [rowHeight]="page.RowHeight"
-              [externalPaging]="true" [count]="page.TotalCount" [offset]="page.PageIndex" [limit]="page.PageSize" (page)='setPage($event)'
-              [footerHeight]="page.FooterHeight">
+            <ngx-datatable class="material" [rows]="posts" [columnMode]="'force'" [headerHeight]="page.HeaderHeight"
+              [rowHeight]="page.RowHeight" [externalPaging]="true" [count]="page.TotalCount" [offset]="page.PageIndex"
+              [limit]="page.PageSize" (page)='setPage($event)' [footerHeight]="page.FooterHeight">
               <ngx-datatable-column name="No" [width]="page.ColumnWith">
                 <ng-template let-column="column" ngx-datatable-header-template>
                   {{column.name}}
@@ -56,11 +56,11 @@
                 <ng-template let-column="column" ngx-datatable-header-template>
                   {{column.name}}
                 </ng-template>
-                <ng-template let-value="value" ngx-datatable-cell-template>
-                  <button type="button" class="btn-xs btn-link" (click)="editPost($event, value.Id)">
+                <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+                  <button type="button" class="btn-xs btn-link" (click)="editPost($event, row.Id, templateModal)">
                     <i class="fa fa-pencil fa-2x"></i>
                   </button>
-                  <button type="button" class="btn-xs btn-link text-danger" (click)="deletePost($event,value.Id)">
+                  <button type="button" class="btn-xs btn-link text-danger" (click)="deletePost($event,row.Id)">
                     <i class="fa fa-trash fa-2x"></i>
                   </button>
                 </ng-template>
@@ -72,3 +72,18 @@
     </div>
   </div>
 </div>
+
+<ng-template #templateModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left" translate>
+      {{ isNew ? 'Post.lblPostModalCreate' : 'Post.lblPostModalEdit'}}
+    </h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-post-add-edit [isNew]="isNew" [postViewModel]="postEntity" [errors]="errors" (save)="savePost($event)"
+      (cancel)="cancelPost($event)"></app-post-add-edit>
+  </div>
+</ng-template>

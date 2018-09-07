@@ -1,5 +1,6 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { ConfigService, PageViewModel, PostViewModel, IPostServiceToken, IPostService } from '../../core';
+import { Component, OnInit, Inject, TemplateRef } from '@angular/core';
+import { ConfigService, PageViewModel, PostViewModel, IPostServiceToken, IPostService, ErrorHandle } from '../../core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-post',
@@ -7,14 +8,18 @@ import { ConfigService, PageViewModel, PostViewModel, IPostServiceToken, IPostSe
   styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit {
-
+  postEntity: PostViewModel;
   posts: Array<PostViewModel>;
   postCategory: any;
   keyword: string;
   page: PageViewModel;
+  modalRef: BsModalRef;
+  isNew = true;
+  public errors: ErrorHandle[] = [];
   constructor(
     @Inject(IPostServiceToken) private postService: IPostService,
-    private configService: ConfigService) {
+    private configService: ConfigService,
+    private modalService: BsModalService) {
     this.page = new PageViewModel();
     this.page.PageSize = this.configService.getConfiguration().PAGE_CONFIG.PageSize;
     this.page.ColumnWith = this.configService.getConfiguration().PAGE_CONFIG.ColumnWith;
@@ -43,15 +48,72 @@ export class PostComponent implements OnInit {
     });
   }
 
-  addPost(event) {
-
+  addPost(event, template: TemplateRef<any>) {
+    event.preventDefault();
+    this.errors = [];
+    this.isNew = true;
+    this.modalRef = this.modalService.show(template, { class: 'modal-lg', backdrop: 'static' });
+    this.postEntity = new PostViewModel();
   }
-  editPost(event, postId) {
 
+  editPost(event, postId, template: TemplateRef<any>) {
+    event.preventDefault();
+    this.isNew = false;
+    this.errors = [];
+    this.postEntity = new PostViewModel();
+    this.postService.GetById(postId).subscribe(
+      (response: any) => {
+        this.postEntity = response;
+        this.modalRef = this.modalService.show(template, { class: 'modal-lg', backdrop: 'static' });
+      },
+      error => { this.postService.HandError(error); });
   }
 
   deletePost(event, postId) {
 
+  }
+  savePost(event) {
+    if (this.isNew) {
+      delete event.Id;
+      this.postService.Post(event)
+        .subscribe(
+          (response) => {
+            this.postEntity = undefined;
+            this.modalRef.hide();
+            this.errors = [];
+            this.setPage({ offset: 0 });
+          },
+          (responseErrors: any) => {
+            if (responseErrors.status === 400 && responseErrors.error) {
+              this.errors = responseErrors.error;
+            } else {
+              this.postService.HandError(responseErrors);
+            }
+          }
+        );
+    } else {
+      this.postService.Put(event)
+        .subscribe(
+          (response) => {
+            this.postEntity = undefined;
+            this.modalRef.hide();
+            this.errors = [];
+            this.setPage({ offset: 0 });
+          },
+          (responseErrors: any) => {
+            if (responseErrors.status === 400 && responseErrors.error) {
+              this.errors = responseErrors.error;
+            } else {
+              this.postService.HandError(responseErrors);
+            }
+          });
+    }
+  }
+  cancelPost(event) {
+    if (this.modalRef) {
+      this.modalRef.hide();
+    }
+    this.postEntity = undefined;
   }
 
 }
