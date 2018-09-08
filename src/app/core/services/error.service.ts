@@ -86,7 +86,7 @@ export class ErrorService {
         data.forEach((error: any) => {
             errors[error] = error;
         });
-        console.log('error service: ', errors);
+
         return errors;
     }
 }

@@ -32,4 +32,6 @@ export * from './tokens/helper.service.token';
 export * from './tokens/error.service.token';
 // Enum
 export * from './enum/system.enum';
+// Pipes
+export * from './pipes/sanitize-html';
 

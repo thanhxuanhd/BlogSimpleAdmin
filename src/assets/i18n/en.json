@@ -34,7 +34,7 @@
         },
         "btnSave": "Save",
         "btnCancel": "Cancel",
-        "STT":"No.",
+        "STT": "No.",
         "Action": "Action"
     },
     "PostCategory": {
@@ -50,7 +50,28 @@
         "Errors": {
             "CategoryName": {
                 "required": "Name must be required",
-                "POST_CATEGORY_NAME_REQUIRED" : "Name must be required"
+                "POST_CATEGORY_NAME_REQUIRED": "Name must be required"
+            }
+        }
+    },
+    "Post": {
+        "lblPostModalCreate": "Create new Post",
+        "lblPostModalEdit": "Edit Post",
+        "lblPostTile": "Title",
+        "lblPostCategory": "Post Category",
+        "lblPostContent": "Content",
+        "lblUrl": "Url",
+        "lblMetaData": "Meta data",
+        "lblMetaDescription": "Meta Description",
+        "lblIsPublic": "Public",
+        "lblPostPreview": "Preview Post",
+        "Errors": {
+            "Title": {
+                "required": "Title must be required",
+                "POST_TITLE_REQUIRED": "Title must be required"
+            },
+            "PostCategoryId": {
+                "required": "Post Category must be required"
             }
         }
     }

@@ -13,7 +13,7 @@
                 </div>
                 <div class="col-2">
                   <button class="btn btn-info" (click)="addPost($event, templateModal)">
-                    <i class="fa fa-plus"></i> Add
+                    <i class="fa fa-plus"></i> {{ 'Common.btnCreate' | translate }}
                   </button>
                 </div>
               </div>
@@ -25,7 +25,7 @@
               [limit]="page.PageSize" (page)='setPage($event)' [footerHeight]="page.FooterHeight">
               <ngx-datatable-column name="No" [width]="page.ColumnWith">
                 <ng-template let-column="column" ngx-datatable-header-template>
-                  {{column.name}}
+                  {{'Common.STT'| translate}}
                 </ng-template>
                 <ng-template let-value="value" let-rowIndex="rowIndex" ngx-datatable-cell-template>
                   <span>{{rowIndex +1}}</span>
@@ -33,7 +33,7 @@
               </ngx-datatable-column>
               <ngx-datatable-column name="Post Title">
                 <ng-template let-column="column" ngx-datatable-header-template>
-                  {{column.name}}
+                  {{'Post.lblPostTile'| translate}}
                 </ng-template>
                 <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                   <strong>{{row.Title}}</strong>
@@ -41,7 +41,7 @@
               </ngx-datatable-column>
               <ngx-datatable-column name="Public">
                 <ng-template let-column="column" ngx-datatable-header-template>
-                  {{column.name}}
+                  {{'Post.lblIsPublic'| translate}}
                 </ng-template>
                 <ng-template let-row="row" ngx-datatable-cell-template>
                   <span class="text-success" *ngIf="row.IsPublic">
@@ -54,11 +54,14 @@
               </ngx-datatable-column>
               <ngx-datatable-column name="Action" [width]="page.ColumnWith">
                 <ng-template let-column="column" ngx-datatable-header-template>
-                  {{column.name}}
+                  {{'Common.Action'| translate}}
                 </ng-template>
                 <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
                   <button type="button" class="btn-xs btn-link" (click)="editPost($event, row.Id, templateModal)">
                     <i class="fa fa-pencil fa-2x"></i>
+                  </button>
+                  <button type="button" class="btn-xs btn-link text-info" (click)="previewPost($event,row.Id, templatePreviewModal)">
+                    <i class="fa fa-eye fa-2x"></i>
                   </button>
                   <button type="button" class="btn-xs btn-link text-danger" (click)="deletePost($event,row.Id)">
                     <i class="fa fa-trash fa-2x"></i>
@@ -85,5 +88,24 @@
   <div class="modal-body">
     <app-post-add-edit [isNew]="isNew" [postViewModel]="postEntity" [errors]="errors" (save)="savePost($event)"
       (cancel)="cancelPost($event)"></app-post-add-edit>
+  </div>
+</ng-template>
+
+<ng-template #templatePreviewModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left" translate>
+      {{'Post.lblPostPreview'}}
+    </h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="post-title">
+      <h2>
+        {{postEntity.Title}}
+      </h2>
+    </div>
+    <div class="post-content" [innerHTML]="postEntity.Content | sanitizeHtml"></div>
   </div>
 </ng-template>

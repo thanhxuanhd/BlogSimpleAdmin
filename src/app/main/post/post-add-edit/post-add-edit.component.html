@@ -17,6 +17,7 @@
         <app-error [viewName]="'Post'" [errors]="fieldErrors('PostCategoryId')"></app-error>
       </div>
       <div class="form-group">
+        <label for="postCategory">{{'Post.lblPostContent'| translate}}</label>
         <editor [apiKey]="'4sodeekklq6xrdmzjob9w0bav2g3kbxgk2jdmvbvtwuekiyf'" formControlName="Content" [init]="confitTypTinyMCE"></editor>
         <app-error [viewName]="'Post'" [errors]="fieldErrors('CategoryDescription')"></app-error>
       </div>

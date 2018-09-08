@@ -72,6 +72,7 @@ export class PostComponent implements OnInit {
   deletePost(event, postId) {
 
   }
+
   savePost(event) {
     if (this.isNew) {
       delete event.Id;
@@ -109,6 +110,7 @@ export class PostComponent implements OnInit {
           });
     }
   }
+
   cancelPost(event) {
     if (this.modalRef) {
       this.modalRef.hide();
@@ -116,4 +118,16 @@ export class PostComponent implements OnInit {
     this.postEntity = undefined;
   }
 
+  previewPost(event, postId, template: TemplateRef<any>) {
+    event.preventDefault();
+    this.isNew = false;
+    this.errors = [];
+    this.postEntity = new PostViewModel();
+    this.postService.GetById(postId).subscribe(
+      (response: any) => {
+        this.postEntity = response;
+        this.modalRef = this.modalService.show(template, { class: 'modal-lg', backdrop: 'static' });
+      },
+      error => { this.postService.HandError(error); });
+  }
 }

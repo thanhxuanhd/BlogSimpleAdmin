@@ -7,7 +7,6 @@ import { IPostCategoryServiceToken, PostCategoryService } from '../../core';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PostCategoryAddEditComponent } from './post-category-add-edit/post-category-add-edit.component';
-import { ModalModule } from 'ngx-bootstrap';
 @NgModule({
   imports: [
     CommonModule,

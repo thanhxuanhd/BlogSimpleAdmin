@@ -6,7 +6,8 @@ import {
   IHelperServiceToken,
   HelperService,
   ErrorService,
-  IErrorServiceToken
+  IErrorServiceToken,
+  SanitizeHtmlPipe
 } from '../core';
 import { IDataServiceToken } from '../core/tokens/data.service.token';
 import { ErrorComponent } from './error-component/error-component.component';
@@ -18,10 +19,11 @@ import { ModalModule } from 'ngx-bootstrap';
     TranslateModule.forChild({}),
     ModalModule.forRoot()
   ],
-  declarations: [ErrorComponent],
+  declarations: [ErrorComponent, SanitizeHtmlPipe],
   exports: [
     ErrorComponent,
     TranslateModule,
+    SanitizeHtmlPipe
   ],
   providers: [
     {

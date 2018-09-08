@@ -35,7 +35,7 @@
         "btnSave": "Lưu",
         "btnCancel": "Hủy",
         "STT": "STT",
-        "Action" : "Thao tác"
+        "Action": "Thao tác"
     },
     "PostCategory": {
         "lblCategoryName": "Tên",
@@ -50,7 +50,28 @@
         "Errors": {
             "CategoryName": {
                 "required": "Tên danh mục là bắt buộc",
-                "POST_CATEGORY_NAME_REQUIRED" : "Tên danh mục là bắt buộc"
+                "POST_CATEGORY_NAME_REQUIRED": "Tên danh mục là bắt buộc"
+            }
+        }
+    },
+    "Post": {
+        "lblPostModalCreate": "Thêm mới bài đăng",
+        "lblPostModalEdit": "Sửa bài đăng",
+        "lblPostTile": "Tiêu đề",
+        "lblPostCategory": "Danh mục bài viết",
+        "lblPostContent": "Nội dung",
+        "lblUrl": "Url",
+        "lblMetaData": "Meta data",
+        "lblMetaDescription": "Meta Description",
+        "lblIsPublic": "Hiển thị",
+        "lblPostPreview": "Xem trước bài đăng",
+        "Errors": {
+            "Title": {
+                "required": "Tiêu đề là bắt buộc",
+                "POST_TITLE_REQUIRED": "Tiêu đề là bắt buộc"
+            },
+            "PostCategoryId": {
+                "required": "Danh mục bài viết là bắt buộc"
             }
         }
     }

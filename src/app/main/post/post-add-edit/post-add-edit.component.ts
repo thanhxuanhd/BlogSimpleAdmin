@@ -55,11 +55,11 @@ export class PostAddEditComponent implements OnInit {
   _entity: PostViewModel;
   addEditForm: FormGroup = new FormGroup({
     Id: new FormControl(),
-    Title: new FormControl('', [Validators.required]),
+    Title: new FormControl('', [Validators.required, Validators.maxLength(200)]),
     Content: new FormControl(''),
     PostCategoryId: new FormControl('', [Validators.required]),
     IsPublic: new FormControl(false),
-    Url: new FormControl(''),
+    Url: new FormControl('', [Validators.maxLength(2000)]),
     MetaData: new FormControl(''),
     MetaDescription: new FormControl(),
     Comments: new FormControl([])
