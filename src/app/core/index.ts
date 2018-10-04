@@ -12,6 +12,7 @@ export * from './interfaces/ipost-category-service';
 export * from './interfaces/ipost-service';
 export * from './interfaces/ihelper-service';
 export * from './interfaces/ierror-service';
+export * from './interfaces/inotification-service';
 // Service
 export * from './services/config.service';
 export * from './services/authen.service';
@@ -23,6 +24,7 @@ export * from './services/translate.service';
 export * from './services/error.service';
 export * from './services/auth.guard.service';
 export * from './services/helper.service';
+export * from './services/notification.service';
 // Token
 export * from './tokens/authen.service.token';
 export * from './tokens/data.service.token';
@@ -30,6 +32,7 @@ export * from './tokens/post-category.service.token';
 export * from './tokens/post.service.token';
 export * from './tokens/helper.service.token';
 export * from './tokens/error.service.token';
+export * from './tokens/notification.service.token';
 // Enum
 export * from './enum/system.enum';
 // Pipes

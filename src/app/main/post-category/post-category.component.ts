@@ -5,7 +5,9 @@ import {
   PostCategoryViewModel,
   PageViewModel,
   ConfigService,
-  ErrorHandle
+  ErrorHandle,
+  INotificationServiceToken,
+  INotificationService
 } from '../../core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
@@ -25,7 +27,8 @@ export class PostCategoryComponent implements OnInit {
   constructor(
     @Inject(IPostCategoryServiceToken) private postCategoryService: IPostCategoryService,
     private configService: ConfigService,
-    private modalService: BsModalService) {
+    private modalService: BsModalService,
+    @Inject(INotificationServiceToken) private notificationService: INotificationService) {
     this.page = new PageViewModel();
     this.page.PageSize = this.configService.getConfiguration().PAGE_CONFIG.PageSize;
     this.page.ColumnWith = this.configService.getConfiguration().PAGE_CONFIG.ColumnWith;
@@ -75,8 +78,9 @@ export class PostCategoryComponent implements OnInit {
       error => { this.postCategoryService.HandError(error); });
   }
 
-  deletePostCategory(event, postId) {
-
+  deletePostCategory(event, postCategoryId) {
+    event.preventDefault();
+    this.notificationService.confirmationDeleteDialog('Bạn có muốn xóa?', () => this.onDeletePostCateogry(postCategoryId));
   }
 
   savePostCategory(event: PostCategoryViewModel) {
@@ -121,5 +125,15 @@ export class PostCategoryComponent implements OnInit {
       this.modalRef.hide();
     }
     this.postCategoryEntity = undefined;
+  }
+
+  onDeletePostCateogry(postCategoryId: any) {
+    this.postCategoryService.Delete(postCategoryId)
+      .subscribe((response) => {
+        this.notificationService.printSuccessMessage('Xoá thành công');
+        this.searchPostCategory({});
+      }, (error) => {
+
+      });
   }
 }

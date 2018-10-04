@@ -7,7 +7,9 @@ import {
   HelperService,
   ErrorService,
   IErrorServiceToken,
-  SanitizeHtmlPipe
+  SanitizeHtmlPipe,
+  INotificationServiceToken,
+  NotificationService
 } from '../core';
 import { IDataServiceToken } from '../core/tokens/data.service.token';
 import { ErrorComponent } from './error-component/error-component.component';
@@ -41,6 +43,10 @@ import { ModalModule } from 'ngx-bootstrap';
     {
       provide: IErrorServiceToken,
       useClass: ErrorService
+    },
+    {
+      provide: INotificationServiceToken,
+      useClass: NotificationService
     }
   ]
 })

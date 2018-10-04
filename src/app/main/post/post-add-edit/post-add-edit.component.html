@@ -10,7 +10,7 @@
       <div class="form-group">
         <label for="postCategory">{{'Post.lblPostCategory'| translate}}</label>
         <select class="form-control custom-select" id="postCategory" formControlName="PostCategoryId" name="PostCategoryId">
-          <option [value]="null">-- {{'Post.lblParentPost'| translate}} --</option>
+          <option [value]="null">-- {{'Post.lblPostCategory'| translate}} --</option>
           <option *ngFor="let postCategory of postCategorys" [ngValue]="postCategory.Id">{{postCategory.CategoryName}}</option>
         </select>
         <input type="hidden" formControlName="PostCategoryId" name="PostCategoryId">
