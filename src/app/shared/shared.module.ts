@@ -82,6 +82,10 @@ export class SharedModule {
         {
           provide: IErrorServiceToken,
           useClass: ErrorService
+        },
+        {
+          provide: INotificationServiceToken,
+          useClass: NotificationService
         }
       ]
     };

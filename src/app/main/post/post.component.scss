@@ -4,4 +4,7 @@
     margin-bottom: 10px;
 }
 
-// .post-content {}
+.post-content-preview {
+    max-height: 750px;
+    overflow-y: auto;
+}

@@ -2,7 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login.component';
 import { LoginRoutingModule } from './login-routing.module';
-import { AuthenService, IAuthenServiceToken, NotificationService } from '../core';
+import {
+  AuthenService,
+  IAuthenServiceToken,
+  NotificationService,
+  IErrorServiceToken,
+  ErrorService,
+  INotificationServiceToken
+} from '../core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 @NgModule({
@@ -17,8 +24,7 @@ import { SharedModule } from '../shared/shared.module';
     {
       provide: IAuthenServiceToken,
       useClass: AuthenService
-    },
-    NotificationService
+    }
   ]
 })
 export class LoginModule { }

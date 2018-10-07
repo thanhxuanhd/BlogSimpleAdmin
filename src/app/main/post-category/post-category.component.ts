@@ -7,7 +7,8 @@ import {
   ConfigService,
   ErrorHandle,
   INotificationServiceToken,
-  INotificationService
+  INotificationService,
+  TranslatesService
 } from '../../core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
@@ -28,7 +29,8 @@ export class PostCategoryComponent implements OnInit {
     @Inject(IPostCategoryServiceToken) private postCategoryService: IPostCategoryService,
     private configService: ConfigService,
     private modalService: BsModalService,
-    @Inject(INotificationServiceToken) private notificationService: INotificationService) {
+    @Inject(INotificationServiceToken) private notificationService: INotificationService,
+    private translateService: TranslatesService) {
     this.page = new PageViewModel();
     this.page.PageSize = this.configService.getConfiguration().PAGE_CONFIG.PageSize;
     this.page.ColumnWith = this.configService.getConfiguration().PAGE_CONFIG.ColumnWith;
@@ -80,7 +82,9 @@ export class PostCategoryComponent implements OnInit {
 
   deletePostCategory(event, postCategoryId) {
     event.preventDefault();
-    this.notificationService.confirmationDeleteDialog('Bạn có muốn xóa?', () => this.onDeletePostCateogry(postCategoryId));
+    this.notificationService.confirmationDeleteDialog(
+      this.translateService.instant('Common.MessageDelete'),
+      () => this.onDeletePostCateogry(postCategoryId));
   }
 
   savePostCategory(event: PostCategoryViewModel) {
@@ -130,10 +134,10 @@ export class PostCategoryComponent implements OnInit {
   onDeletePostCateogry(postCategoryId: any) {
     this.postCategoryService.Delete(postCategoryId)
       .subscribe((response) => {
-        this.notificationService.printSuccessMessage('Xoá thành công');
+        this.notificationService.printSuccessMessage(this.translateService.instant('Common.MessageDeleteSuccess'));
         this.searchPostCategory({});
       }, (error) => {
-
+        this.notificationService.printErrorMessage(this.translateService.instant('Common.MessageDeleteError'));
       });
   }
 }

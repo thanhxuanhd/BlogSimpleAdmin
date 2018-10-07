@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { TranslatesService } from './translate.service';
 
 declare var alertify: any;
 
 @Injectable()
 export class NotificationService {
   private notifier: any = alertify;
-  constructor() {
+  constructor(private transalateService: TranslatesService) {
     alertify.defaults = {
       // dialogs defaults
       autoReset: true,
@@ -39,9 +40,9 @@ export class NotificationService {
       // language resources
       glossary: {
         // dialogs default title
-        title: 'Popup',
-        ok: 'Ok',
-        cancel: 'Cancel'
+        title: this.transalateService.instant('Common.MessageTitle'),
+        ok: this.transalateService.instant('Common.btnOk'),
+        cancel: this.transalateService.instant('Common.btnCancel')
       },
 
       // theme settings
@@ -66,7 +67,7 @@ export class NotificationService {
     this.notifier.error(message);
   }
 
-  confirmationDeleteDialog(message: string, okCallback: () => any) {
+  confirmationDeleteDialog(message: string, okCallback: Function) {
     this.notifier.confirm(message, function (e) {
       if (e) {
         okCallback();
@@ -74,7 +75,7 @@ export class NotificationService {
       }
     }).set('defaultFocus', 'cancel');
   }
-  confirmationSaveDialog(message: string, okCallback: () => any) {
+  confirmationSaveDialog(message: string, okCallback: Function) {
     this.notifier.confirm(message, function (e) {
       if (e) {
         okCallback();

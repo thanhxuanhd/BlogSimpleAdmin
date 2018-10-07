@@ -63,4 +63,13 @@ export class AuthenService {
         }
         return user;
     }
+
+    HandError(error: any) {
+        switch (error.status) {
+            case 401:
+            case 500:
+            default:
+                console.log('Hander Error');
+        }
+    }
 }

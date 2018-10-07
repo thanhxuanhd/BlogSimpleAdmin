@@ -6,4 +6,5 @@ export interface IAuthenService {
     Logout(): Observable<any>;
     GetCurrentUser(): LoggedInUser;
     IsUserAuthenticated(): boolean;
+    HandError(error: any);
 }

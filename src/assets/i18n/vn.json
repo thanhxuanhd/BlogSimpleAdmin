@@ -8,12 +8,16 @@
         "Error": {
             "UserName": {
                 "required": "Tên đăng nhập là bắt buộc.",
-                "email": "Tên đăng nhập phải là email."
+                "email": "Tên đăng nhập phải là email.",
+                "USER_NOT_FOUND": "Tên đăng nhập không tồn tại !"
             },
             "Password": {
-                "required": "Mật là bắt buộc."
+                "required": "Mật là bắt buộc.",
+                "PASSWORD_IN_CORRECT": "Mật khẩu không đúng !"
             }
-        }
+        },
+        "LoginSuccess": "Đăng nhập thành công !",
+        "LoginError": "Đăng nhập thất bại !"
     },
     "Main": {
         "Post": {
@@ -35,7 +39,12 @@
         "btnSave": "Lưu",
         "btnCancel": "Hủy",
         "STT": "STT",
-        "Action": "Thao tác"
+        "Action": "Thao tác",
+        "MessageDelete": "Bạn có muốn xóa bản ghi này?",
+        "MessageTitle": "Thông báo",
+        "MessageDeleteSuccess": "Xóa thành công !",
+        "MessageDeleteError": "Xóa không thành công !",
+        "btnOk": "Đồng ý"
     },
     "PostCategory": {
         "lblCategoryName": "Tên",

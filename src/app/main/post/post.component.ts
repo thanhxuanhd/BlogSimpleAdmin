@@ -7,7 +7,8 @@ import {
   IPostService,
   ErrorHandle,
   INotificationService,
-  INotificationServiceToken
+  INotificationServiceToken,
+  TranslatesService
 } from '../../core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 
@@ -29,7 +30,8 @@ export class PostComponent implements OnInit {
     @Inject(IPostServiceToken) private postService: IPostService,
     private configService: ConfigService,
     private modalService: BsModalService,
-    @Inject(INotificationServiceToken) private notificationService: INotificationService) {
+    @Inject(INotificationServiceToken) private notificationService: INotificationService,
+    private translateService: TranslatesService) {
     this.page = new PageViewModel();
     this.page.PageSize = this.configService.getConfiguration().PAGE_CONFIG.PageSize;
     this.page.ColumnWith = this.configService.getConfiguration().PAGE_CONFIG.ColumnWith;
@@ -81,8 +83,9 @@ export class PostComponent implements OnInit {
 
   deletePost(event, postId) {
     event.preventDefault();
-    this.notificationService.confirmationDeleteDialog('Bạn có muốn xóa?', () =>
-      this.onDeletePost(postId));
+    this.notificationService.confirmationDeleteDialog(
+      this.translateService.instant('Common.MessageDelete'), () =>
+        this.onDeletePost(postId));
   }
 
   savePost(event) {
@@ -145,10 +148,10 @@ export class PostComponent implements OnInit {
   onDeletePost(postId) {
     this.postService.Delete(postId)
       .subscribe((response) => {
-        this.notificationService.printSuccessMessage('Xoá thành công');
+        this.notificationService.printSuccessMessage(this.translateService.instant('Common.MessageDeleteSuccess'));
         this.searchPost({});
       }, (error) => {
-
+        this.notificationService.printErrorMessage(this.translateService.instant('Common.MessageDeleteError'));
       });
   }
 }
