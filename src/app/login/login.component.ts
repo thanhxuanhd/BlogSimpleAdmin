@@ -26,7 +26,8 @@ export class LoginComponent implements OnInit {
 
   formLogin: FormGroup = new FormGroup({
     UserName: new FormControl('', [Validators.required, Validators.email]),
-    Password: new FormControl('', [Validators.required])
+    Password: new FormControl('', [Validators.required]),
+    IncludeRefreshToken : new FormControl(true)
   });
 
   languages: Array<Language> = [];

@@ -52,6 +52,7 @@
           formControlName="Password">
         <app-error [viewName]="'Login'" [errors]="fieldErrors('Password')"></app-error>
       </div>
+      <input type="hidden" id="IncludeRefreshToken" class="fadeIn second" name="login" formControlName="IncludeRefreshToken">
       <button type="submit" class="fadeIn fourth btn" [disabled]="!formLogin.valid">
         {{'Login.btnLogin'| translate}}
       </button>

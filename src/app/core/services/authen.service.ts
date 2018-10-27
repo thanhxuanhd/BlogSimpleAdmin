@@ -17,7 +17,7 @@ export class AuthenService {
 
     Login(user: LoginViewModel): Observable<any> {
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-        const url = this.configService.getConfiguration().BASE_API + '/api/Account/Login';
+        const url = this.configService.getConfiguration().BASE_API + '/api/Token/Login';
         return this.http.post(url, user, { headers: headers })
             .pipe(
                 map((response) => {
@@ -34,7 +34,7 @@ export class AuthenService {
 
     Logout() {
         localStorage.removeItem(SystemConfig.CURRENT_USER);
-        const url = this.configService.getConfiguration().BASE_API + '/api/Account/Logout';
+        const url = this.configService.getConfiguration().BASE_API + '/api/Token/Logout';
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         return this.http.post(url, null, { headers: headers });
     }

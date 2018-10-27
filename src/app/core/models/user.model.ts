@@ -1,6 +1,7 @@
 export class LoginViewModel {
     UserName: string;
     Password: string;
+    IncludeRefreshToken: boolean;
 }
 
 export class LoggedInUser {
