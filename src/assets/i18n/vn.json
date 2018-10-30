@@ -9,7 +9,7 @@
             "UserName": {
                 "required": "Tên đăng nhập là bắt buộc.",
                 "email": "Tên đăng nhập phải là email.",
-                "USER_NOT_FOUND": "Tên đăng nhập không tồn tại !"
+                "USER_INVADLID": "Tên đăng nhập hoặc mật khẩu không đúng!"
             },
             "Password": {
                 "required": "Mật là bắt buộc.",

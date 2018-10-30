@@ -9,7 +9,7 @@
             "UserName": {
                 "required": "Username is required.",
                 "email": "Username must be is email.",
-                "USER_NOT_FOUND": "Username is not exists !"
+                "USER_INVADLID": "Username or Password invalid!"
             },
             "Password": {
                 "required": "Password is required.",
