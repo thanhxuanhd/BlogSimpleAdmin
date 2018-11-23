@@ -10,8 +10,8 @@ export class PostService {
 
     }
     Get(keyWord = '', sortColunm = '', postCategoryId, pageIndex = 0, pageSize = 15, desc = false): Observable<any> {
-        const url = `${this.URL_API_POST}?keyWord=${keyWord}&sortColunm=${sortColunm}
-        &postCategoryId=${postCategoryId}&pageIndex=${pageIndex}&pageSize=${pageSize}`;
+        const url = `${this.URL_API_POST}?keyWord=${keyWord}&sortColunm=${sortColunm}` +
+        `&postCategoryId=${postCategoryId}&pageIndex=${pageIndex}&pageSize=${pageSize}`;
         return this.dataService.Get(url);
     }
     Post(model: PostViewModel): Observable<any> {

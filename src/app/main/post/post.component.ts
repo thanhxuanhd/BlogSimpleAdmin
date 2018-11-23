@@ -21,7 +21,7 @@ export class PostComponent implements OnInit {
   postEntity: PostViewModel;
   posts: Array<PostViewModel>;
   postCategory: any;
-  keyword: string;
+  keyword = '';
   page: PageViewModel;
   modalRef: BsModalRef;
   isNew = true;
