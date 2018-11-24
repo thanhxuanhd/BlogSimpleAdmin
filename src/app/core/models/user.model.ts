@@ -26,3 +26,15 @@ export class LoggedInUser {
         this.Email = Email;
     }
 }
+
+export class UserViewModel {
+    Email: string;
+    Password: string;
+    RePassword: string;
+    FullName: string;
+    BirthDay: any;
+    Id: any;
+    RoleIds: Array<any>;
+    PhoneNumber: number;
+    Sex: string;
+}

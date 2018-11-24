@@ -8,7 +8,8 @@
                 <img src="assets/images/users/1.jpg" alt="user" /> </div>
             <!-- User profile text-->
             <div class="profile-text">
-                <a href="#" class="dropdown-toggle link u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                <a href="#" class="dropdown-toggle link u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true"
+                    aria-expanded="true">
                     <span *ngIf="currentUser">{{currentUser.FullName}}</span>
                     <span class="caret"></span>
                 </a>
@@ -53,6 +54,14 @@
                         <li>
                             <a routerLink="/main/post" [routerLinkActive]="['router-link-active']">
                                 <i class="mdi mdi-bulletin-board"></i> Post</a>
+                        </li>
+                        <li>
+                            <a routerLink="/main/user" [routerLinkActive]="['router-link-active']">
+                                <i class="mdi mdi-account"></i> User</a>
+                        </li>
+                        <li>
+                            <a routerLink="/main/role" [routerLinkActive]="['router-link-active']">
+                                <i class="mdi mdi-account-check"></i> Role</a>
                         </li>
                     </ul>
                 </li>

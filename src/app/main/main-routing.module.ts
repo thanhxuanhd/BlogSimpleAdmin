@@ -9,7 +9,9 @@ const routes: Routes = [
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', loadChildren: './home/home.module#HomeModule' },
             { path: 'post', loadChildren: './post/post.module#PostModule' },
-            { path: 'postcategory', loadChildren: './post-category/post-category.module#PostCategoryModule' }
+            { path: 'postcategory', loadChildren: './post-category/post-category.module#PostCategoryModule' },
+            { path: 'user', loadChildren: './user/user.module#UserModule' },
+            { path: 'role', loadChildren: './role/role.module#RoleModule' }
         ]
     }
 ];
