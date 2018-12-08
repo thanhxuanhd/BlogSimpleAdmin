@@ -20,7 +20,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 export class PostComponent implements OnInit {
   postEntity: PostViewModel;
   posts: Array<PostViewModel>;
-  postCategory: any;
+  postCategory = '';
   keyword = '';
   page: PageViewModel;
   modalRef: BsModalRef;

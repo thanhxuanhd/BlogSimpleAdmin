@@ -83,5 +83,11 @@
                 "required": "Post Category must be required"
             }
         }
+    },
+    "Role": {
+        "lblName": "Role Name"
+    },
+    "User": {
+        "lblName": "User Name"
     }
 }

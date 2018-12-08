@@ -3,15 +3,16 @@ import { PostViewModel } from '../models/post.model';
 import { IDataServiceToken } from '../tokens/data.service.token';
 import { IDataService } from '../interfaces/idata-service';
 import { Observable } from 'rxjs';
+import { ConfigService } from './config.service';
 @Injectable()
 export class PostService {
-    URL_API_POST = '/api/Post';
-    constructor(@Inject(IDataServiceToken) private dataService: IDataService) {
+    URL_API_POST = `/api/${this.configuration.getConfiguration().API_VERSION}/Post`;
+    constructor(@Inject(IDataServiceToken) private dataService: IDataService, private configuration: ConfigService) {
 
     }
     Get(keyWord = '', sortColunm = '', postCategoryId, pageIndex = 0, pageSize = 15, desc = false): Observable<any> {
         const url = `${this.URL_API_POST}?keyWord=${keyWord}&sortColunm=${sortColunm}` +
-        `&postCategoryId=${postCategoryId}&pageIndex=${pageIndex}&pageSize=${pageSize}`;
+            `&postCategoryId=${postCategoryId}&pageIndex=${pageIndex}&pageSize=${pageSize}`;
         return this.dataService.Get(url);
     }
     Post(model: PostViewModel): Observable<any> {

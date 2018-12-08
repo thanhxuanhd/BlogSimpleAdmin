@@ -3,10 +3,11 @@ import { PostCategoryViewModel } from '../models/post-category.model';
 import { IDataServiceToken } from '../tokens/data.service.token';
 import { IDataService } from '../interfaces/idata-service';
 import { Observable } from 'rxjs';
+import { ConfigService } from './config.service';
 @Injectable()
 export class RoleService {
-    URL_API_ROLE = '/api/Role';
-    constructor(@Inject(IDataServiceToken) private dataService: IDataService) {
+    URL_API_ROLE = `/api/${this.configuration.getConfiguration().API_VERSION}/Role`;
+    constructor(@Inject(IDataServiceToken) private dataService: IDataService, private configuration: ConfigService) {
 
     }
     Get(keyWord = '', sortColunm = '', pageIndex = 0, pageSize = 15): Observable<any> {

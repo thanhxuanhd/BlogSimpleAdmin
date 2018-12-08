@@ -1,5 +1,6 @@
 {
     "BASE_API": "http://localhost:10688",
+    "API_VERSION": "v1",
     "PAGE_CONFIG": {
         "HeaderHeight": 50,
         "ColumnWith": 50,

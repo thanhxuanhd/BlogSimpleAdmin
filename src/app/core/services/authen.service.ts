@@ -17,7 +17,8 @@ export class AuthenService {
 
     Login(user: LoginViewModel): Observable<any> {
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-        const url = this.configService.getConfiguration().BASE_API + '/api/Token/Login';
+        const url = this.configService.getConfiguration().BASE_API +
+                 `/api/${this.configService.getConfiguration().API_VERSION}/Token/Login`;
         return this.http.post(url, user, { headers: headers })
             .pipe(
                 map((response) => {

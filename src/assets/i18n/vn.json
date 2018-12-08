@@ -83,5 +83,11 @@
                 "required": "Danh mục bài viết là bắt buộc"
             }
         }
+    },
+    "Role": {
+        "lblName": "Role Name"
+    },
+    "User": {
+        "lblName": "User Name"
     }
 }
