@@ -7,7 +7,8 @@
           <div class="text-right">
             <div class="row">
               <div class="col-10">
-                <input class="form-control" name="keyword" placeholder="Search..." [(ngModel)]="keyword" (keyup.enter)="searchUser($event)" />
+                <input class="form-control" name="keyword" placeholder="Search..." [(ngModel)]="keyword"
+                  (keyup.enter)="searchUser($event)" />
               </div>
               <div class="col-2">
                 <button class="btn btn-info" (click)="addUser($event, templateModal)">
@@ -56,3 +57,15 @@
     </div>
   </div>
 </div>
+
+<ng-template #templateModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left" translate>
+    </h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+  </div>
+</ng-template>

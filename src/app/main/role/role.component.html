@@ -7,8 +7,8 @@
           <div class="text-right">
             <div class="row">
               <div class="col-10">
-                <input class="form-control" name="keyword" placeholder="Search..." [(ngModel)]="keyword" (keyup.enter)="searchRole($event)"
-                />
+                <input class="form-control" name="keyword" placeholder="Search..." [(ngModel)]="keyword"
+                  (keyup.enter)="searchRole($event)" />
               </div>
               <div class="col-2">
                 <button class="btn btn-info" (click)="addRole($event, templateModal)">
@@ -19,9 +19,9 @@
           </div>
         </div>
         <div class="col">
-          <ngx-datatable class="material" [rows]="roles" [columnMode]="'force'" [headerHeight]="page.HeaderHeight" [rowHeight]="page.RowHeight"
-            [externalPaging]="true" [count]="page.TotalCount" [offset]="page.PageIndex" [limit]="page.PageSize" (page)='setPage($event)'
-            [footerHeight]="page.FooterHeight">
+          <ngx-datatable class="material" [rows]="roles" [columnMode]="'force'" [headerHeight]="page.HeaderHeight"
+            [rowHeight]="page.RowHeight" [externalPaging]="true" [count]="page.TotalCount" [offset]="page.PageIndex"
+            [limit]="page.PageSize" (page)='setPage($event)' [footerHeight]="page.FooterHeight">
             <ngx-datatable-column name="No" [width]="page.ColumnWith">
               <ng-template let-column="column" ngx-datatable-header-template>
                 {{'Common.STT'| translate}}
@@ -57,3 +57,15 @@
     </div>
   </div>
 </div>
+
+<ng-template #templateModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left" translate>
+    </h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+  </div>
+</ng-template>
