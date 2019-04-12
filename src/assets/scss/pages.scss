@@ -4020,7 +4020,12 @@ Contact app Page
 .btn-link{
   border:0px;
 }
-
+.btn-xs.btn-link {
+    background: none;
+}
+.btn.btn-default {
+    border: 1px solid #ced4da;
+}
 /*******************
 Smart table
 ******************/
