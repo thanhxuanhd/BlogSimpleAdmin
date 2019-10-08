@@ -88,6 +88,7 @@
         "lblName": "Role Name"
     },
     "User": {
-        "lblName": "User Name"
+        "lblName": "User Name",
+        "lblEmail": "Email"
     }
 }

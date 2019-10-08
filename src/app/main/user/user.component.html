@@ -43,10 +43,10 @@
                 {{'Common.Action'| translate}}
               </ng-template>
               <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
-                <button type="button" class="btn-xs btn-link" (click)="editPostCategory($event, row.Id, templateModal)">
+                <button type="button" class="btn-xs btn-link" (click)="editUser($event, row.Id, templateModal)">
                   <i class="fa fa-pencil fa-2x"></i>
                 </button>
-                <button type="button" class="btn-xs btn-link text-danger" (click)="deletePostCategory($event, row.Id)">
+                <button type="button" class="btn-xs btn-link text-danger" (click)="deleteUser($event, row.Id)">
                   <i class="fa fa-trash fa-2x"></i>
                 </button>
               </ng-template>

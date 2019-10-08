@@ -57,11 +57,11 @@ export class UserComponent implements OnInit {
       });
   }
 
-  searchUser(event) {
+  searchUser(event: any) {
     this.setPage({ offset: 0 });
   }
 
-  addUser(event, template: TemplateRef<any>) {
+  addUser(event: any, template: TemplateRef<any>) {
     event.preventDefault();
     this.errors = [];
     this.isNew = true;
@@ -69,14 +69,18 @@ export class UserComponent implements OnInit {
     this.userEntity = new UserViewModel();
   }
 
-  editRole(event, userId, template: TemplateRef<any>) {
+  editRole(event: any, userId: any, template: TemplateRef<any>) {
     event.preventDefault();
     this.isNew = false;
     this.errors = [];
     this.userEntity = new UserViewModel();
   }
 
-  deleteUser(event, roleId) {
+  deleteUser(event: any, roleId: any) {
+    event.preventDefault();
+  }
+
+  editUser(event: any, user: any) {
     event.preventDefault();
   }
 
