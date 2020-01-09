@@ -30,7 +30,7 @@ const Components = [
   ]
 })
 export class ThemesModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<ThemesModule> {
     return { ngModule: ThemesModule, providers: [] };
   }
 }

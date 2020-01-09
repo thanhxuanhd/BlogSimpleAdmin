@@ -51,8 +51,8 @@ import { ModalModule } from 'ngx-bootstrap';
   ]
 })
 export class SharedModule {
-  public static forRoot(): ModuleWithProviders {
-    return <ModuleWithProviders>{
+  public static forRoot(): ModuleWithProviders<SharedModule> {
+    return <ModuleWithProviders<SharedModule>>{
       ngModule: SharedModule,
       providers: [
         {
@@ -75,8 +75,8 @@ export class SharedModule {
     };
   }
 
-  public static forChild(): ModuleWithProviders {
-    return <ModuleWithProviders>{
+  public static forChild(): ModuleWithProviders<SharedModule> {
+    return <ModuleWithProviders<SharedModule>>{
       ngModule: SharedModule,
       providers: [
         {

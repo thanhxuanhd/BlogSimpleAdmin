@@ -5,8 +5,8 @@ import { AuthGuardService } from './core';
 import { NotFoundComponent } from './shared';
 const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
-    { path: 'login', loadChildren: './login/login.module#LoginModule' },
-    { path: 'main', loadChildren: './main/main.module#MainModule', canActivate: [AuthGuardService] },
+    { path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule) },
+    { path: 'main', loadChildren: () => import('./main/main.module').then(m => m.MainModule), canActivate: [AuthGuardService] },
     { path: '**', component: NotFoundComponent }
 ];
 

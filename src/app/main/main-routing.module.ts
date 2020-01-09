@@ -7,11 +7,11 @@ const routes: Routes = [
         path: '', component: MainComponent,
         children: [
             { path: '', redirectTo: 'home', pathMatch: 'full' },
-            { path: 'home', loadChildren: './home/home.module#HomeModule' },
-            { path: 'post', loadChildren: './post/post.module#PostModule' },
-            { path: 'postcategory', loadChildren: './post-category/post-category.module#PostCategoryModule' },
-            { path: 'user', loadChildren: './user/user.module#UserModule' },
-            { path: 'role', loadChildren: './role/role.module#RoleModule' }
+            { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
+            { path: 'post', loadChildren: () => import('./post/post.module').then(m => m.PostModule) },
+            { path: 'postcategory', loadChildren: () => import('./post-category/post-category.module').then(m => m.PostCategoryModule) },
+            { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
+            { path: 'role', loadChildren: () => import('./role/role.module').then(m => m.RoleModule) }
         ]
     }
 ];
