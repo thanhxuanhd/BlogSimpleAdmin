@@ -25,5 +25,8 @@
         "../node_modules/core-js/es/*"
       ]
     }
+  },
+  "angularCompilerOptions": {
+    "enableIvy": true
   }
 }
