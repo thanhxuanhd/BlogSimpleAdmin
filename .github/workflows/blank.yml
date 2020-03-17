@@ -16,24 +16,31 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    # Runs a command node js
-    - name: Setup Node
-      uses: actions/setup-node@v1
-      with:
-        node-version: '10.x'
-    # Run mpm instaill
-    - name: Install Dependencies
-      run:
-        npm install -g @angular/cli
-        npm install
-    # Run angular build
-    - name: Build Production
-      run: ng build --prod
-        
+    - name: Cache node modules
+    uses: actions/cache@v1
+    with:
+      path: ~/.npm
+      key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      restore-keys: |
+        ${{ runner.os }}-node-
+    
+    # Node version 
+    - name: Node ${{ matrix.node-version }}
+     uses: actions/setup-node@v1
+     with:
+      node-version: ${{ matrix.node-version }}
+
+    - name: npm ci and npm run build
+    run: |
+      npm ci
+      npm run build:ci
 
