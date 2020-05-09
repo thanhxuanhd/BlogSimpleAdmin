@@ -9,7 +9,7 @@ import {
   ConfigService,
   IRoleService
 } from '../../core';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 @Component({
   selector: 'app-role',
   templateUrl: './role.component.html',

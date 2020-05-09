@@ -10,7 +10,7 @@ import {
   INotificationServiceToken,
   TranslatesService
 } from '../../core';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-post',

@@ -10,7 +10,7 @@ import {
   INotificationServiceToken,
   IUserService
 } from '../../core';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-user',

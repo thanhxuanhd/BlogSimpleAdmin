@@ -14,7 +14,7 @@ import {
 import { IDataServiceToken } from '../core/tokens/data.service.token';
 import { ErrorComponent } from './error-component/error-component.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { ModalModule } from 'ngx-bootstrap';
+import { ModalModule } from 'ngx-bootstrap/modal';
 @NgModule({
   imports: [
     CommonModule,
