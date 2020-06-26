@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { LoginViewModel, LoggedInUser } from '../models/user.model';
-import { SystemConfig } from '../enum/system.enum';
-import { ConfigService } from '../services/config.service';
+import { ConfigService, JwtService } from '../services';
 import { map } from 'rxjs/operators';
 @Injectable()
 export class AuthenService {
@@ -12,20 +11,20 @@ export class AuthenService {
      *
      */
     constructor(private http: HttpClient,
-        private configService: ConfigService) {
+        private configService: ConfigService,
+        private jwtService: JwtService) {
     }
 
     Login(user: LoginViewModel): Observable<any> {
-        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         const url = this.configService.getConfiguration().BASE_API +
                  `/api/${this.configService.getConfiguration().API_VERSION}/Token/Login`;
-        return this.http.post(url, user, { headers: headers })
+        return this.http.post(url, user)
             .pipe(
                 map((response) => {
                     if (response) {
-                        localStorage.setItem(SystemConfig.CURRENT_USER, JSON.stringify(response));
+                        this.jwtService.saveToken(JSON.stringify(response));
                     } else {
-                        localStorage.removeItem(SystemConfig.CURRENT_USER);
+                        this.jwtService.destroyToken();
                     }
                 })
             );
@@ -34,14 +33,13 @@ export class AuthenService {
     }
 
     Logout() {
-        localStorage.removeItem(SystemConfig.CURRENT_USER);
+        this.jwtService.destroyToken();
         const url = this.configService.getConfiguration().BASE_API + '/api/Token/Logout';
-        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-        return this.http.post(url, null, { headers: headers });
+        return this.http.post(url, null);
     }
 
     IsUserAuthenticated(): boolean {
-        const user = localStorage.getItem(SystemConfig.CURRENT_USER);
+        const user = this.jwtService.getToken();
         if (user != null) {
             return true;
         }
@@ -51,7 +49,7 @@ export class AuthenService {
     GetCurrentUser(): LoggedInUser {
         let user: LoggedInUser;
         if (this.IsUserAuthenticated()) {
-            const userData = JSON.parse(localStorage.getItem(SystemConfig.CURRENT_USER));
+            const userData = JSON.parse(this.jwtService.getToken());
             user = new LoggedInUser(
                 userData.Id,
                 userData.AuthenToken,

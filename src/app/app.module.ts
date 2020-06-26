@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import * as $ from 'jquery';
 import { environment } from '../environments/environment';
-import { ConfigService } from './core';
+import { ConfigService, CoreModule } from './core';
 import { HttpClientModule } from '@angular/common/http';
 import { SpinnerComponent } from './themes/spinner.component';
 import { AppTranslationModule } from './app.translate.module';
@@ -26,7 +26,8 @@ export function ConfigLoader(configService: ConfigService) {
     BrowserModule,
     AppRoutingModule,
     AppTranslationModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    CoreModule
   ],
   providers: [
     ConfigService,

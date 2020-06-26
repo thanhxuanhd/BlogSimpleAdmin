@@ -2,7 +2,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   IAuthenServiceToken,
-  AuthenService, DataService,
+  DataService,
   IHelperServiceToken,
   HelperService,
   ErrorService,
@@ -29,10 +29,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
   ],
   providers: [
     {
-      provide: IAuthenServiceToken,
-      useClass: AuthenService
-    },
-    {
       provide: IDataServiceToken,
       useClass: DataService
     },
@@ -55,10 +51,6 @@ export class SharedModule {
     return <ModuleWithProviders<SharedModule>>{
       ngModule: SharedModule,
       providers: [
-        {
-          provide: IAuthenServiceToken,
-          useClass: AuthenService
-        },
         {
           provide: IDataServiceToken,
           useClass: DataService

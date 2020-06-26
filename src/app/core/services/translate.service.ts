@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfigService } from './config.service';
-import { SystemConfig } from '../enum/system.enum';
+import { SystemConfig } from '../enums';
 @Injectable()
 export class TranslatesService {
     private currentLang = '';
