@@ -11,7 +11,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes, { useHash: true }), NgbModule],
+    imports: [RouterModule.forRoot(routes, { useHash: true, relativeLinkResolution: 'legacy' }), NgbModule],
     exports: [RouterModule],
     providers: [AuthGuardService]
 })

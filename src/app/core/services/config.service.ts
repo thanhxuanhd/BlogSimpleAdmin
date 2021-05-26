@@ -12,7 +12,7 @@ export class ConfigService {
             this.http.get<Configuration>(url)
                 .subscribe((config) => {
                     this.config = config;
-                    resolve();
+                    resolve(this.config);
                 }, error => { });
         });
     }
