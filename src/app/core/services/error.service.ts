@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, AbstractControl } from '@angular/forms';
 import { FormError } from '../models/error.model';
-import 'rxjs/operator/filter';
-import 'rxjs/operator/map';
-
+import 'rxjs';
 @Injectable()
 export class ErrorService {
     private addEditForm: FormGroup;
